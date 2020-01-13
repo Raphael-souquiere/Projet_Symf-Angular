@@ -1,0 +1,19 @@
+api_rest_homepage:
+    path:     /
+    defaults: { _controller: ApiRestBundle:Default:index }
+api_rest_listecle:
+    path:     /listecle
+    defaults: { _controller: ApiRestBundle:Default:listecle }
+api_rest_detailcle:
+    path:     /detailcle/{id}
+    defaults: { _controller: ApiRestBundle:Default:detailcle }
+    requirements:
+      id: '\d+'
+api_rest_listeutilisateur:
+    path:     /listeutilisateur
+    defaults: { _controller: ApiRestBundle:Default:listeutilisateur }
+api_rest_detailutilisateur:
+    path:     /detailutilisateur/{id}
+    defaults: { _controller: ApiRestBundle:Default:detailutilisateur }
+    requirements:
+      id: '\d+'
