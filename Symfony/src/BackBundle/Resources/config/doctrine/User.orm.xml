@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="BackBundle\Entity\User" table="user">
+  <entity name="BackBundle\Entity\User" table="user"
+    repository-class="BackBundle\Repository\UserRepository">
     <indexes>
       <index name="user_type_user_FK" columns="id_type_user"/>
       <index name="user_site0_FK" columns="id_site"/>

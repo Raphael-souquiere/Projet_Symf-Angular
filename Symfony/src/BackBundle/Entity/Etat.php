@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Etat
  *
  * @ORM\Table(name="etat")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="BackBundle\Repository\EtatRepository")
  */
 class Etat
 {

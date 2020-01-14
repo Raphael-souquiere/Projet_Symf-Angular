@@ -6,7 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use BackBundle\Entity\User;
-
+use BackBundle\Entity\Cle;
+use BackBundle\Entity\Affecte;
 
 class DefaultController extends Controller
 {
@@ -16,23 +17,27 @@ class DefaultController extends Controller
     }
     public function listecleAction()
     {
-        return $this->render('ApiRestBundle:Default:index.html.twig');
+      $cles = $this->getDoctrine()
+          ->getRepository(Cle::class)
+          ->findAllOrderedByName();
+      return new JsonResponse([$cles]);
     }
-    public function detailcleAction()
+    public function detailcleAction($id)
     {
-        return $this->render('ApiRestBundle:Default:index.html.twig');
+      $cle = $this->getDoctrine()
+          ->getRepository(Affecte::class)
+          ->findAffecteByCle($id);
+      return new JsonResponse([$cle]);
     }
 
 
-    public function listeutilisateurAction(Request $request)
+    public function listeutilisateurAction()
     {
-      $em= $this->getDoctrine()->getEntityManager();
-
-      $users = $em->getRepository('BackBundle:User')->listeuser();
-
+      $users = $this->getDoctrine()
+          ->getRepository(User::class)
+          ->findAllOrderedByName();
       return new JsonResponse([$users]);
     }
-
 
     public function detailutilisateurAction()
     {
