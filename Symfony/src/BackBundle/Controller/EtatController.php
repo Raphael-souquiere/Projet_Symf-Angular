@@ -18,4 +18,13 @@ class EtatController extends Controller
           'etats' => $etats,
       ));
   }
+  public function showAction($id)
+  {
+      $em = $this->getDoctrine()->getManager();
+
+      $etat = $em->getRepository(Etat::class)->findOne($id);
+      return $this->render('etat/show.html.twig', array(
+          'etat' => $etat,
+      ));
+  }
 }

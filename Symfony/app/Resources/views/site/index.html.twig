@@ -1,3 +1,4 @@
+{% include 'base.html.twig' %}
 {% block body %}
     <h1>Etat list</h1>
     <table>
@@ -11,7 +12,6 @@
         {% for site in sites %}
             <tr>
                 <td><a href="{{ path('site_show', { 'id': site.id }) }}">{{ site.id }}</a></td>
-                <td>{{ site.id }}</td>
                 <td>{{ site.site }}</td>
                 <td>
                     <ul>

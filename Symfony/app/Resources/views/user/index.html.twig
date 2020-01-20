@@ -1,3 +1,4 @@
+{% include 'base.html.twig' %}
 {% block body %}
     <h1>Utilisateur list</h1>
     <table>
@@ -15,7 +16,6 @@
         {% for user in users %}
             <tr>
                 <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
-                <td>{{ user.id }}</td>
                 <td>{{ user.nom }}</td>
                 <td>{{ user.prenom }}</td>
                 <td>{{ user.actif }}</td>

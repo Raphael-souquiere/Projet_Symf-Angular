@@ -14,4 +14,12 @@ class EtatRepository extends EntityRepository
             )
             ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
     }
+    public function findOne($id)
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT p FROM BackBundle:Etat p WHERE p.id = :id'
+            )->setParameter("id", $id)
+            ->getOneOrNullResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
+    }
 }

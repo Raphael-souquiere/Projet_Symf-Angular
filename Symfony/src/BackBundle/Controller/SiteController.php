@@ -18,4 +18,13 @@ class SiteController extends Controller
           'sites' => $sites,
       ));
   }
+  public function showAction($id)
+  {
+      $em = $this->getDoctrine()->getManager();
+
+      $site = $em->getRepository(Site::class)->findOne($id);
+      return $this->render('site/show.html.twig', array(
+          'site' => $site,
+      ));
+  }
 }

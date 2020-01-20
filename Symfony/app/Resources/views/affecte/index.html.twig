@@ -1,3 +1,4 @@
+{% include 'base.html.twig' %}
 {% block body %}
     <h1>Cle list</h1>
     <table>
@@ -15,7 +16,6 @@
         {% for affecte in affectes %}
             <tr>
                 <td><a href="{{ path('affecte_show', { 'id': affecte.id }) }}">{{ affecte.id }}</a></td>
-                <td>{{ affecte.id }}</td>
                 <td>{% if affecte.dateAffectation %}{{ affecte.dateAffectation|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{% if affecte.dateSuppression %}{{ affecte.dateSuppression|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{% if affecte.created %}{{ affecte.created|date('Y-m-d H:i:s') }}{% endif %}</td>

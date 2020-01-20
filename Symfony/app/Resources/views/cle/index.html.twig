@@ -1,3 +1,4 @@
+{% include 'base.html.twig' %}
 {% block body %}
     <h1>Cle list</h1>
     <table>
@@ -18,7 +19,6 @@
         {% for cle in cles %}
             <tr>
                 <td><a href="{{ path('cle_show', { 'id': cle.id }) }}">{{ cle.id }}</a></td>
-                <td>{{ cle.id }}</td>
                 <td>{{ cle.numCle }}</td>
                 <td>{{ cle.commentaire }}</td>
                 <td>{{ cle.montantInitial }}</td>

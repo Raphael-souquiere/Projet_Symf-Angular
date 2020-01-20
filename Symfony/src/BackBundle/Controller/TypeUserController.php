@@ -17,4 +17,13 @@ class TypeUserController extends Controller
           'typeusers' => $typeusers,
       ));
   }
+  public function showAction($id)
+  {
+      $em = $this->getDoctrine()->getManager();
+
+      $typeuser = $em->getRepository(TypeUser::class)->findOne($id);
+      return $this->render('typeuser/show.html.twig', array(
+          'typeuser' => $typeuser,
+      ));
+  }
 }
