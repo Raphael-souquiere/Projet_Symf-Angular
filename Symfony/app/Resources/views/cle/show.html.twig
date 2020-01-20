@@ -1,0 +1,50 @@
+
+{% block body %}
+    <h1>Annonce</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ cle.id }}</td>
+            </tr>
+            <tr>
+                <th>Commentaire</th>
+                <td>{{ cle.commentaire }}</td>
+            </tr>
+            <tr>
+                <th>NyumCle</th>
+                <td>{{ cle.numCle }}</td>
+            </tr>
+            <tr>
+                <th>Date Creation</th>
+                <td>{% if cle.dateCreation %}{{ cle.dateCreation|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Date Arret</th>
+                <td>{% if cle.dateArret %}{{ cle.dateArret|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Creation</th>
+                <td>{% if cle.created %}{{ cle.created|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Update</th>
+                <td>{% if cle.updated %}{{ cle.updated|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Montant Initial</th>
+                <td>{{ cle.montantInitial }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('cle_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('cle_edit', { 'id': cle.id }) }}">Edit</a>
+        </li>
+    </ul>
+{% endblock %}

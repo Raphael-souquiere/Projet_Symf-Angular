@@ -1,0 +1,36 @@
+{% block body %}
+    <h1>Etat list</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>site</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for site in sites %}
+            <tr>
+                <td><a href="{{ path('site_show', { 'id': site.id }) }}">{{ site.id }}</a></td>
+                <td>{{ site.id }}</td>
+                <td>{{ site.site }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('site_show', { 'id': site.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('site_edit', { 'id': site.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('affecte_new') }}">Create a new affecte</a>
+        </li>
+    </ul>
+{% endblock %}

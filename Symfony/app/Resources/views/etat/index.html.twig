@@ -1,0 +1,36 @@
+{% block body %}
+    <h1>Etat list</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>Cause arret</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for etat in etats %}
+            <tr>
+                <td><a href="{{ path('etat_show', { 'id': etat.id }) }}">{{ etat.id }}</a></td>
+                <td>{{ etat.id }}</td>
+                <td>{{ etat.causeArret }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('etat_show', { 'id': etat.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('etat_edit', { 'id': etat.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('affecte_new') }}">Create a new affecte</a>
+        </li>
+    </ul>
+{% endblock %}

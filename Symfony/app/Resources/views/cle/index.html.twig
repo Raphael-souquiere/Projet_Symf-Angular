@@ -1,0 +1,49 @@
+{% block body %}
+    <h1>Cle list</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>numCle</th>
+                <th>commentaire</th>
+                <th>montantInitial</th>
+                <th>Date Creation</th>
+                <th>Date Arret</th>
+                <th>Creation</th>
+                <th>Update</th>
+                <th>Etat</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cle in cles %}
+            <tr>
+                <td><a href="{{ path('cle_show', { 'id': cle.id }) }}">{{ cle.id }}</a></td>
+                <td>{{ cle.id }}</td>
+                <td>{{ cle.numCle }}</td>
+                <td>{{ cle.commentaire }}</td>
+                <td>{{ cle.montantInitial }}</td>
+                <td>{% if cle.dateCreation %}{{ cle.dateCreation|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if cle.dateArret %}{{ cle.dateArret|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if cle.created %}{{ cle.created|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if cle.updated %}{{ cle.updated|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('cle_show', { 'id': cle.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('cle_edit', { 'id': cle.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('cle_new') }}">Create a new cle</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% block body %}
+    <h1>Cle list</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>Date Affectation</th>
+                <th>Date Suppression</th>
+                <th>Creation</th>
+                <th>Update</th>
+                <th>Etat</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for affecte in affectes %}
+            <tr>
+                <td><a href="{{ path('affecte_show', { 'id': affecte.id }) }}">{{ affecte.id }}</a></td>
+                <td>{{ affecte.id }}</td>
+                <td>{% if affecte.dateAffectation %}{{ affecte.dateAffectation|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if affecte.dateSuppression %}{{ affecte.dateSuppression|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if affecte.created %}{{ affecte.created|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if affecte.updated %}{{ affecte.updated|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('affecte_show', { 'id': affecte.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('affecte_edit', { 'id': affecte.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('affecte_new') }}">Create a new affecte</a>
+        </li>
+    </ul>
+{% endblock %}

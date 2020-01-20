@@ -1,0 +1,38 @@
+
+{% block body %}
+    <h1>Annonce</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ affecte.id }}</td>
+            </tr>
+            <tr>
+                <th>Date affectation</th>
+                <td>{% if affecte.dateAffectation %}{{ affecte.dateAffectation|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Date Suppression</th>
+                <td>{% if affecte.dateSuppression %}{{ affecte.dateSuppression|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Creation</th>
+                <td>{% if affecte.created %}{{ affecte.created|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Update</th>
+                <td>{% if affecte.updated %}{{ affecte.updated|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('affecte_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('affecte_edit', { 'id': affecte.id }) }}">Edit</a>
+        </li>
+    </ul>
+{% endblock %}

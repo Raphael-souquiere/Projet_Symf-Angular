@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Intenautes</title>
+        <link rel="stylesheet" type="text/css" href="{{ asset('BackOfficeBundle/css/test6.css') }}" />
+    </head>
+    <body>
+        {% include "@BackOffice/Default/menu_bar.html.twig" %}
+        <h1>Internaute</h1>
+
+        <table>
+          <tr>
+            <th>Titre</th>
+            <th>Libelle</th>
+            <th>Date dépot</th>
+            <th>Prix</th>
+            <th>Auteur</th>
+          </tr>
+
+          {% for a in annonces %}
+            <tr>
+              <td> {{ a.titre }} </td>
+              <td> {{ a.libelle }} </td>
+              <td> {{ a.dateDepot }} </td>
+              <td> {{ a.prix }} </td>
+              <td> {{ a.internaute.prenom }} {{ a.internaute.nom }} </td>
+            </tr>
+          {% endfor %}
+        </table>
+    </body>
+</html>

@@ -1,0 +1,36 @@
+{% block body %}
+    <h1>TypeUser list</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>Type User</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for typeuser in typeusers %}
+            <tr>
+                <td><a href="{{ path('typeuser_show', { 'id': typeuser.id }) }}">{{ typeuser.id }}</a></td>
+                <td>{{ typeuser.id }}</td>
+                <td>{{ typeuser.typeUser }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('typeuser_show', { 'id': typeuser.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('typeuser_edit', { 'id': typeuser.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('typeuser_new') }}">Create a new typeuser</a>
+        </li>
+    </ul>
+{% endblock %}
