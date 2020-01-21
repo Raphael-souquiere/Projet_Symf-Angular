@@ -27,4 +27,64 @@ class EtatController extends Controller
           'etat' => $etat,
       ));
   }
+  public function newAction(Request $request, Etat $etat = null)
+  {
+      $etat = new Etat();
+      $form = $this->createForm('BackBundle\Form\EtatType', $etat);
+      $form->handleRequest($request);
+
+      if ($form->isSubmitted() && $form->isValid()) {
+          $em = $this->getDoctrine()->getManager();
+          $em->persist($etat);
+          $em->flush();
+
+          return $this->redirectToRoute('etat_show', array('id' => $etat->getId()));
+      }
+
+      return $this->render('etat/new.html.twig', array('form' => $form->createView(),));
+  }
+
+
+  //Edition d'un utilisateur
+
+
+  public function editAction(Request $request, Etat $etat)
+
+    {
+        $deleteForm = $this->createFormBuilder()->setAction($this->generateUrl('etat_delete', array('id' => $etat->getId())))->setMethod('DELETE')->getForm();
+
+        $editForm = $this->createForm('BackBundle\Form\EtatType', $etat)->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('etat_show', array('id' => $etat->getId()));
+        }
+
+        return $this->render('etat/edit.html.twig', array(
+            'etat' => $etat,
+            'edit_form' => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+
+    //Suppresion d'un utilisateur
+
+
+    public function deleteAction(Request $request, Etat $etat)
+    {
+        $form = $this->createFormBuilder()
+            ->setAction($this->generateUrl('etat_delete', array('id' => $etat->getId())))->setMethod('DELETE')->getForm()->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($etat);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('etat_index');
+    }
+
 }

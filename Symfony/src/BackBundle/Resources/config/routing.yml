@@ -1,21 +1,21 @@
 back_homepage:
-    path:     /back/
-    defaults: { _controller: BackBundle:Default:index }
+    path:     /
+    defaults: { _controller: AppBundle:Default:index }
 back_cle:
     resource: "@BackBundle/Resources/config/routing/cle.yml"
-    prefix:   /back/cle
+    prefix:   /cle
 back_user:
     resource: "@BackBundle/Resources/config/routing/user.yml"
-    prefix:   /back/user
+    prefix:   /user
 back_etat:
     resource: "@BackBundle/Resources/config/routing/etat.yml"
-    prefix:   /back/etat
+    prefix:   /etat
 back_site:
     resource: "@BackBundle/Resources/config/routing/site.yml"
-    prefix:   /back/site
+    prefix:   /site
 back_affecte:
     resource: "@BackBundle/Resources/config/routing/affecte.yml"
-    prefix:   /back/affecte
+    prefix:   /affecte
 back_typeuser:
     resource: "@BackBundle/Resources/config/routing/typeuser.yml"
-    prefix:   /back/typeuser
+    prefix:   /typeuser

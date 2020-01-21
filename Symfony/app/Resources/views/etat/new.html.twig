@@ -1,7 +1,7 @@
 {% include 'base.html.twig' %}
 
 {% block body %}
-    <h1>Annonce creation</h1>
+    <h1>Création d'état</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
@@ -10,7 +10,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('annonce_index') }}">Back to the list</a>
+            <a href="{{ path('etat_index') }}">Back to the list</a>
         </li>
     </ul>
 {% endblock %}

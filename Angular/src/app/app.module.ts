@@ -1,18 +1,34 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ListeuserComponent } from './listeuser/listeuser.component';
+import { HomeComponent } from './home/home.component';
+import { RecupdataComponent } from './recupdata/recupdata.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule }   from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ListeuserComponent,
+    HomeComponent,
+    RecupdataComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(router: Router){
+      console.log('Route: ', JSON.stringify(router.config, undefined, 2));
+   }
+ }

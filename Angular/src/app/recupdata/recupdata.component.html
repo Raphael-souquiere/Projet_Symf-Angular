@@ -1,0 +1,18 @@
+<p>
+ recupdata works! {{valueRetour | json}}
+</p>
+ <br>
+ <table>
+ <tr>
+ <td>Code</td><td>Nom</td><td>Lat.</td><td>Long</td>
+ </tr>
+
+ <tr *ngFor="let cles of valueRetour">
+ <td>{{ cles.numCle }}</td>
+ <td>{{ cles.dateCreation }}</td>
+ <td>{{ cles.dateArret }}</td>
+ <td>{{ cles.montantInitial }}</td>
+ <td>{{ cles.commentaires }}</td>
+ <td>{{ cles.id }}</td>
+ </tr>
+</table>

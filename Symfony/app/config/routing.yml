@@ -4,7 +4,7 @@ api_rest:
 
 back:
     resource: "@BackBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /back
 
 app:
     resource: '@AppBundle/Controller/'

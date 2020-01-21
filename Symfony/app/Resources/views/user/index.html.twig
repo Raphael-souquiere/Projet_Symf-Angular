@@ -1,10 +1,10 @@
 {% include 'base.html.twig' %}
 {% block body %}
-    <h1>Utilisateur list</h1>
-    <table>
+    <h1>Liste des Utilisateurs</h1>
+    <table class="list">
         <thead>
             <tr>
-                <th>id</th>
+                <th>Identifiant</th>
                 <th>nom</th>
                 <th>prenom</th>
                 <th>actif</th>
@@ -19,8 +19,8 @@
                 <td>{{ user.nom }}</td>
                 <td>{{ user.prenom }}</td>
                 <td>{{ user.actif }}</td>
-                <td>{% if user.created %}{{ user.created|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if user.updated %}{{ user.updated|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if user.created %}{{ user.created|date('d/m/Y') }}{% endif %}</td>
+                <td>{% if user.updated %}{{ user.updated|date('d/m/Y') }}{% endif %}</td>
                 <td>
                     <ul>
                         <li>
@@ -28,9 +28,6 @@
                         </li>
                         <li>
                             <a href="{{ path('user_edit', { 'id': user.id }) }}">edit</a>
-                        </li>
-                        <li>
-                            <a href="{ %render "BackBundle:User:delete" with { 'id': user.id }%}">delete</a>
                         </li>
                     </ul>
                 </td>
@@ -41,7 +38,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('user_new') }}">Create a new user</a>
+            <a href="{{ path('user_new') }}">Créer un nouvel utilisateur</a>
         </li>
     </ul>
 {% endblock %}
