@@ -283,4 +283,9 @@ class Cle
     {
         return $this->idEtat;
     }
+
+    public function __toString()
+    {
+        return (string) $this->numCle;
+    }
 }

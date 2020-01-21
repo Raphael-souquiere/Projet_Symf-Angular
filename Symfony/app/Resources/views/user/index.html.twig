@@ -29,6 +29,9 @@
                         <li>
                             <a href="{{ path('user_edit', { 'id': user.id }) }}">edit</a>
                         </li>
+                        <li>
+                            <a href="{ %render "BackBundle:User:delete" with { 'id': user.id }%}">delete</a>
+                        </li>
                     </ul>
                 </td>
             </tr>
@@ -42,3 +45,4 @@
         </li>
     </ul>
 {% endblock %}
+{% include 'footer.html.twig' %}

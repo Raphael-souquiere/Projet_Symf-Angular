@@ -1,16 +1,21 @@
-{% include 'base.html.twig' %}
 
-{% block body %}
-    <h1>Annonce creation</h1>
 
-    {{ form_start(form) }}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Nouveau</title>
+    </head>
+    <body>
+        {% include 'base.html.twig' %}
+        <h1>Nouveau</h1>
+
+        {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+        <input type="submit" value="Créer" />
+        {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('annonce_index') }}">Back to the list</a>
-        </li>
-    </ul>
-{% endblock %}
+        <a href="{{ path('user_index') }}">Revenir à la liste</a>
+    </body>
+</html>
+{% include 'footer.html.twig' %}

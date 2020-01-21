@@ -63,4 +63,9 @@ class Site
     {
         return $this->id;
     }
+
+    public function __toString()
+    {
+        return (string) $this->site;
+    }
 }

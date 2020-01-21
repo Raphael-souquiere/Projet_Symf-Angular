@@ -255,4 +255,9 @@ class User
     {
         return $this->idTypeUser;
     }
+
+    public function __toString()
+    {
+        return (string) $this->id;
+    }
 }
