@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use BackBundle\Entity\Affecte;
+use \Datetime;
 
 class AffecteController extends Controller
 {
@@ -35,6 +36,9 @@ class AffecteController extends Controller
       $form->handleRequest($request);
 
       if ($form->isSubmitted() && $form->isValid()) {
+        $datetime = new DateTime();
+        $affecte->setCreated($datetime);
+        $affecte->setUpdated($datetime);
           $em = $this->getDoctrine()->getManager();
           $em->persist($affecte);
           $em->flush();
@@ -57,6 +61,8 @@ class AffecteController extends Controller
         $editForm = $this->createForm('BackBundle\Form\AffecteType', $affecte)->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+          $datetime = new DateTime();
+          $affecte->setUpdated($datetime);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('affecte_show', array('id' => $affecte->getId()));

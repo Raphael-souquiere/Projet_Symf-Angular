@@ -14,7 +14,7 @@
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Delete" onclick="if(!confirm('Etes vous sure de vouloir supprimer ce type d'utilisateur ainsi que tout les utilisateurs qui lui sont associé ?')) { return false; }">
             {{ form_end(delete_form) }}
         </li>
     </ul>

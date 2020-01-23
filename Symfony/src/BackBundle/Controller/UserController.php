@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use BackBundle\Entity\User;
+use BackBundle\Form\UserrechercheType;
+use \Datetime;
 
 class UserController extends Controller
 
@@ -16,16 +18,19 @@ class UserController extends Controller
   //Liste de tout les utilisateur
 
 
-  public function showallAction()
+  public function showallAction($recherche = null)
   {
       $em = $this->getDoctrine()->getManager();
 
-      $users = $em->getRepository(User::class)->findAllOrderedByName();
+      if ($recherche == null){
+        $users = $em->getRepository(User::class)->findAllOrderedByName();
+      }else{
+        $users = $em->getRepository(User::class)->findByRecherche($recherche);
+      }
       return $this->render('user/index.html.twig', array(
           'users' => $users,
       ));
   }
-
 
   //detail d'un utilisateur
 
@@ -51,6 +56,9 @@ class UserController extends Controller
       $form->handleRequest($request);
 
       if ($form->isSubmitted() && $form->isValid()) {
+          $datetime = new DateTime();
+          $user->setCreated($datetime);
+          $user->setUpdated($datetime);
           $em = $this->getDoctrine()->getManager();
           $em->persist($user);
           $em->flush();
@@ -73,6 +81,8 @@ class UserController extends Controller
         $editForm = $this->createForm('BackBundle\Form\UserType', $user)->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $datetime = new DateTime();
+            $user->setUpdated($datetime);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('user_show', array('id' => $user->getId()));

@@ -13,7 +13,15 @@ class CleType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('numCle')->add('dateCreation')->add('dateArret')->add('montantInitial')->add('commentaire')->add('created')->add('updated')->add('idEtat');
+        $builder
+        ->add('numCle')
+        ->add('dateCreation')
+        ->add('dateArret')
+        ->add('montantInitial')
+        ->add('commentaire')
+        //->add('created')
+        //->add('updated')
+        ->add('idEtat');
     }/**
      * {@inheritdoc}
      */

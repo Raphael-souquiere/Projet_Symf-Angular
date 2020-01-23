@@ -70,10 +70,13 @@
         <li>
             <a href="{{ path('user_index') }}">Back to the list</a>
         </li>
-    </ul>
 
-    <ul>
-        <a href="{{ path('user_index') }}" > <input class="boutton_1" type="button" value="Retournez a la liste"></a>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete" onclick="if(!confirm('Etes vous sure de vouloir supprimer cette utilisateur ainsi que toute les affectations qui lui sont associé ?')) { return false; }" >
+            {{ form_end(delete_form) }}
+        </li>
+
     </ul>
 {% endblock %}
 {% include 'footer.html.twig' %}

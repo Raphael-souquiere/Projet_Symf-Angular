@@ -22,4 +22,13 @@ class UserRepository extends EntityRepository
             )->setParameter("id", $id)
             ->getOneOrNullResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
     }
+
+    public function findByRecherche($recherche)
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT p FROM BackBundle:User p WHERE p.nom LIKE :recherche'
+            )->setParameter("recherche", $recherche)
+            ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
+    }
 }

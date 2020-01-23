@@ -49,7 +49,12 @@ class DefaultController extends Controller
       $users = $this->getDoctrine()
           ->getRepository(User::class)
           ->findAllOrderedByName();
-      return new JsonResponse([$users]);
+          $response = new Response();
+
+            $response->setContent(json_encode($users));
+            $response->headers->set('Content-Type', 'application/json');
+            $response->headers->set('Access-Control-Allow-Origin', '*');
+          return $response;
     }
 
     public function detailutilisateurAction()
