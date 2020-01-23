@@ -3,10 +3,13 @@
 <!DOCTYPE html>
 <html>
     <head>
+    <link rel="stylesheet" href="{{ asset('style_user.css') }}" type="text/css"/>
         <meta charset="UTF-8">
         <title>Nouveau</title>
     </head>
     <body>
+    <div id="container">
+    
         {% include 'base.html.twig' %}
         <h1>Nouveau</h1>
 
@@ -16,6 +19,7 @@
         {{ form_end(form) }}
 
         <a href="{{ path('user_index') }}">Revenir à la liste</a>
+    </div>
     </body>
 </html>
 {% include 'footer.html.twig' %}
