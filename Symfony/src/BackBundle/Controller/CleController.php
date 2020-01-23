@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use BackBundle\Entity\Cle;
+use \Datetime;
 
 class CleController extends Controller
 {
@@ -40,10 +41,12 @@ class CleController extends Controller
     public function newAction(Request $request, Cle $cle = null)
     {
         $cle = new Cle();
-        $form = $this->createForm('BackBundle\Form\CleType', $cle);
-        $form->handleRequest($request);
+        $form = $this->createForm('BackBundle\Form\CleType', $cle)->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $datetime = new DateTime();
+            $cle->setCreated($datetime);
+            $cle->setUpdated($datetime);
             $em = $this->getDoctrine()->getManager();
             $em->persist($cle);
             $em->flush();
@@ -66,6 +69,8 @@ class CleController extends Controller
           $editForm = $this->createForm('BackBundle\Form\CleType', $cle)->handleRequest($request);
 
           if ($editForm->isSubmitted() && $editForm->isValid()) {
+              $datetime = new DateTime();
+              $cle->setUpdated($datetime);
               $this->getDoctrine()->getManager()->flush();
 
               return $this->redirectToRoute('cle_show', array('id' => $cle->getId()));
