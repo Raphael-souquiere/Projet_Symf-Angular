@@ -1,5 +1,8 @@
 {% include 'base.html.twig' %}
 {% block body %}
+
+<link rel="stylesheet" href="{{ asset('css/style_user.css') }}" type="text/css"/>
+
     <h1>Liste des Utilisateurs</h1>
     <table class="list">
         <thead>
@@ -23,12 +26,8 @@
                 <td>{% if user.updated %}{{ user.updated|date('d/m/Y') }}{% endif %}</td>
                 <td>
                     <ul>
-                        <li>
-                            <a href="{{ path('user_show', { 'id': user.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('user_edit', { 'id': user.id }) }}">edit</a>
-                        </li>
+                        <a href="{{ path('user_show', { 'id': user.id }) }}" > <input class="boutton_1" id="margin" type="button" value="Plus de détails"></a>
+                        <a href="{{ path('user_edit', { 'id': user.id }) }}" > <input class="boutton_1" type="button" value="Modifier"></a>
                     </ul>
                 </td>
             </tr>
@@ -37,9 +36,7 @@
     </table>
 
     <ul>
-        <li>
-            <a href="{{ path('user_new') }}">Créer un nouvel utilisateur</a>
-        </li>
+        <a href="{{ path('user_new') }}"><input class="boutton_2" type="button" value="Créer un nouvel utilisateur"></a>
     </ul>
 {% endblock %}
 {% include 'footer.html.twig' %}

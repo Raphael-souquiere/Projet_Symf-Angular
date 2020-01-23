@@ -3,21 +3,87 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <link rel="stylesheet" href="{{ asset('style_user.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('css/style_user.css') }}" type="text/css"/>
         <meta charset="UTF-8">
-        <title>Nouveau</title>
     </head>
     <body>
+
+    {% include 'base.html.twig' %}
+
+    <h1>Nouveau</h1>
+
     <div id="container">
     
-        {% include 'base.html.twig' %}
-        <h1>Nouveau</h1>
+        {{  form_start(form)}}
+        <div class="form-box">
+            <div class="form-label">
+                {{ form_label(form.nom) }} :
+            </div>
+            <div class="form-widget">
+                {{ form_widget(form.nom)}}
+            </div>
+        </div>
 
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Créer" />
-        {{ form_end(form) }}
+        <div class="form-box">
+            <div class="form-label">
+                {{ form_label(form.prenom) }} :
+            </div>
+            <div class="form-widget">
+                {{ form_widget(form.prenom)}}
+            </div>
+        </div>
 
+        <div class="form-box">
+            <div class="form-label">
+                {{ form_label(form.actif) }} :
+            </div>
+            <div class="form-widget">
+                {{ form_widget(form.actif)}}
+            </div>
+        </div>
+
+        <div class="form-box">
+            <div class="form-label">
+                {{ form_label(form.created) }} :
+            </div>
+            <div class="form-widget">
+                {{ form_widget(form.created)}}
+            </div>
+        </div>
+        <br>
+        <div class="form-box">
+            <div class="form-label">
+                {{ form_label(form.updated) }} :
+            </div>
+            <div class="form-widget">
+                {{ form_widget(form.updated)}}
+            </div>
+        </div>
+        <br>
+        <div class="form-box">
+            <div class="form-label">
+                {{ form_label(form.idSite) }} :
+            </div>
+            <div class="form-widget">
+                {{ form_widget(form.idSite)}}
+            </div>
+        </div>
+
+        <div class="form-box">
+            <div class="form-label">
+                {{ form_label(form.idTypeUser) }} :
+            </div>
+            <div class="form-widget">
+                {{ form_widget(form.idTypeUser)}}
+            </div>
+        </div>
+
+        <div class="form-box">
+            <input id="boutton" type="submit" value="Créer un nouvel utilisateur" />
+            {{ form_end(form) }}
+        </div>
+
+        <br>
         <a href="{{ path('user_index') }}">Revenir à la liste</a>
     </div>
     </body>
