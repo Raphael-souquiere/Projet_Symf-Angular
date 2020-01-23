@@ -18,8 +18,9 @@ class CleRepository extends EntityRepository
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT p FROM BackBundle:Cle p WHERE p.id = :id'
+                'SELECT p FROM BackBundle:Cle p WHERE p.id = :id '
             )->setParameter("id", $id)
             ->getOneOrNullResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
     }
+
 }

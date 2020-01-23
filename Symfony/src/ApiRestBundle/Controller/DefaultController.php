@@ -25,9 +25,9 @@ class DefaultController extends Controller
           ->findAllOrderedByName();
           $response = new Response();
 
-            $response->setContent(json_encode($cles));
-            $response->headers->set('Content-Type', 'application/json');
-            $response->headers->set('Access-Control-Allow-Origin', '*');
+          $response->setContent(json_encode($cles));
+          $response->headers->set('Content-Type', 'application/json');
+          $response->headers->set('Access-Control-Allow-Origin', '*');
           return $response;
 
     }
@@ -36,11 +36,17 @@ class DefaultController extends Controller
     public function detailcleAction($id)
     {
       $cle = $this->getDoctrine()
+          ->getRepository(Cle::class)
+          ->findOne($id);
+      $affectes = $this->getDoctrine()
           ->getRepository(Affecte::class)
           ->findAffecteByCle($id);
 
-
-      return new JsonResponse([$cle]);
+          $response = new Response();
+          $response->setContent(json_encode($cle + $affectes));
+          $response->headers->set('Content-Type', 'application/json');
+          $response->headers->set('Access-Control-Allow-Origin', '*');
+          return $response;
     }
 
 

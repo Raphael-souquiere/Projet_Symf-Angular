@@ -31,4 +31,5 @@ class UserRepository extends EntityRepository
             )->setParameter("recherche", $recherche)
             ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
     }
+    
 }

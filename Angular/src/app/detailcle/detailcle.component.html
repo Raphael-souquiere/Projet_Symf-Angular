@@ -1,0 +1,14 @@
+<p>
+detail cle works! {{valueRetour | json}}
+</p>
+ <br>
+ <table>
+ <tr>
+ <td>Code</td><td>Nom</td><td>Lat.</td><td>Long</td>
+ </tr>
+
+ <tr *ngFor="let cle of valueRetour">
+ <td>{{ cle.numCle }}</td>
+ <td>{{ cle.id }}</td>
+ </tr>
+</table>
