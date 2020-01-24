@@ -1,0 +1,26 @@
+{% include 'base.html.twig' %}
+{% block body %}
+
+<link rel="stylesheet" href="{{ asset('css/style_user.css') }}" type="text/css"/>
+
+    <h1>Liste des Utilisateurs</h1>
+    <table class="list">
+        <thead>
+            <tr>
+                <th>Utilisateur actif</th>
+                <th>Cle active</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td>{{ user }}</td>
+                <td>{{ cle }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+    </ul>
+{% endblock %}
+{% include 'footer.html.twig' %}

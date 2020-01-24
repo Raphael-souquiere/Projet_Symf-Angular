@@ -1,6 +1,9 @@
 back_homepage:
     path:     /
     defaults: { _controller: AppBundle:Default:index }
+back_stat:
+    path:     /stat
+    defaults: { _controller: BackBundle:Statistique:stat }
 back_cle:
     resource: "@BackBundle/Resources/config/routing/cle.yml"
     prefix:   /cle

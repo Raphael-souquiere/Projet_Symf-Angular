@@ -23,4 +23,11 @@ class CleRepository extends EntityRepository
             ->getOneOrNullResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
     }
 
+    public function findCleActif()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT COUNT(p) FROM BackBundle:Cle p WHERE p.idEtat = 1'
+            )->getSingleScalarResult();
+    }
 }

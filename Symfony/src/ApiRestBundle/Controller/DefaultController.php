@@ -56,7 +56,7 @@ class DefaultController extends Controller
           ->getRepository(User::class)
           ->findAllOrderedByName();
           $response = new Response();
-
+            
             $response->setContent(json_encode($users));
             $response->headers->set('Content-Type', 'application/json');
             $response->headers->set('Access-Control-Allow-Origin', '*');

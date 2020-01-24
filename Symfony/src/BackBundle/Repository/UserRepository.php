@@ -31,5 +31,13 @@ class UserRepository extends EntityRepository
             )->setParameter("recherche", $recherche)
             ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
     }
-    
+
+    public function findUserActif()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT COUNT(p) FROM BackBundle:User p WHERE p.actif = 1'
+            )->getSingleScalarResult();
+    }
+
 }
