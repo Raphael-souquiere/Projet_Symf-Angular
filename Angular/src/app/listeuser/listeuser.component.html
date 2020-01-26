@@ -1,5 +1,4 @@
 <p> {{valueRetour | json}}
-
 </p>
  <br>
  <table>
@@ -12,7 +11,7 @@
  <td>{{ users.nom }}</td>
  <td>{{ users.prenom }}</td>
  <td>{{ users.actif }}</td>
- <td>{{ users.created  | date: 'yyyy-MM-dd HH:mm'}}</td>
- <td>{{ users.updated }}</td>
+ <td>{{ users.created.date | date :'short' }}</td>
+ <td>{{ users.updated.date | date :'short' }}</td>
  </tr>
 </table>

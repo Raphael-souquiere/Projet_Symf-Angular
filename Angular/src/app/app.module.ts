@@ -9,13 +9,15 @@ import { RecupdataComponent } from './recupdata/recupdata.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule }   from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DetailcleComponent } from './detailcle/detailcle.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListeuserComponent,
     HomeComponent,
-    RecupdataComponent
+    RecupdataComponent,
+    DetailcleComponent
   ],
   imports: [
     BrowserModule,

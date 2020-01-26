@@ -4,15 +4,18 @@
  <br>
  <table>
  <tr>
- <td>Code</td><td>Nom</td><td>Lat.</td><td>Long</td>
+ <td>id</td><td>Numero de clé</td><td>Creation</td><td>Arret</td>
+ <td>Montant</td><td>Commentaire</td>
  </tr>
-
  <tr *ngFor="let cles of valueRetour">
- <td>{{ cles.numCle }}</td>
- <td>{{ cles.dateCreation }}</td>
- <td>{{ cles.dateArret }}</td>
- <td>{{ cles.montantInitial }}</td>
- <td>{{ cles.commentaires }}</td>
  <td>{{ cles.id }}</td>
+ <td>{{ cles.numCle }}</td>
+ <td>{{ cles.dateCreation.date | date :'short' }}</td>
+ <td>{{ cles.dateArret.date | date :'short' }}</td>
+ <td>{{ cles.montantInitial }}</td>
+ <td>{{ cles.commentaire }}</td>
+ <td>{{ cles.created.date | date :'short' }}</td>
+ <td>{{ cles.updated.date | date :'short' }}</td>
+
  </tr>
 </table>
