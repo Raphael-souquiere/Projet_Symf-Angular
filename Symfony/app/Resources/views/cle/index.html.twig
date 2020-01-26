@@ -1,18 +1,18 @@
 {% include 'base.html.twig' %}
 {% block body %}
+
+<link rel="stylesheet" href="{{ asset('css/style_cle.css') }}" type="text/css"/>
+
     <h1>Cle list</h1>
+    <div class="container">
     <table>
         <thead>
             <tr>
-                <th>id</th>
-                <th>numCle</th>
-                <th>commentaire</th>
-                <th>montantInitial</th>
-                <th>Date Creation</th>
-                <th>Date Arret</th>
-                <th>Creation</th>
-                <th>Update</th>
-                <th>Etat</th>
+                <th>Id</th>
+                <th>Numéro de clé</th>
+                <th>Commentaire</th>
+                <th>Montant Initial</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -22,29 +22,19 @@
                 <td>{{ cle.numCle }}</td>
                 <td>{{ cle.commentaire }}</td>
                 <td>{{ cle.montantInitial }}</td>
-                <td>{% if cle.dateCreation %}{{ cle.dateCreation|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if cle.dateArret %}{{ cle.dateArret|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if cle.created %}{{ cle.created|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if cle.updated %}{{ cle.updated|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
                     <ul>
-                        <li>
-                            <a href="{{ path('cle_show', { 'id': cle.id }) }}">Voir plus</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('cle_edit', { 'id': cle.id }) }}">Editer</a>
-                        </li>
+                        <a href="{{ path('cle_show', { 'id': cle.id }) }}" > <input class="boutton_1" id="margin" type="button" value="Plus de détails"></a>
+                        <a href="{{ path('cle_edit', { 'id': cle.id }) }}" > <input class="boutton_1" type="button" value="Modifier"></a>
                     </ul>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+    </div>
+    <br>
+    <a href="{{ path('cle_new') }}"><input id="boutton" type="button" value="Créer une nouvelle clé"></a>
 
-    <ul>
-        <li>
-            <a href="{{ path('cle_new') }}">Créer une nouvelle clé</a>
-        </li>
-    </ul>
 {% endblock %}
 {% include 'footer.html.twig' %}

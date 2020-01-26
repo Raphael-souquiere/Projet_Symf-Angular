@@ -1,7 +1,11 @@
 {% include 'base.html.twig' %}
 {% block body %}
+
+<link rel="stylesheet" href="{{ asset('css/style_user_show.css') }}" type="text/css"/>
+
     <h1>User</h1>
 
+    <div class="container">
     <table>
         <tbody>
             <tr>
@@ -17,32 +21,26 @@
                 <td>{{ user.prenom }}</td>
             </tr>
             <tr>
-                <th>actif</th>
-                <td>{{ user.actif }}</td>
-            </tr>
-            <tr>
-                <th>Creation</th>
+                <th>Date de creation du compte</th>
                 <td>{% if user.created %}{{ user.created|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Update</th>
+                <th>Date de mise a jour</th>
                 <td>{% if user.updated %}{{ user.updated|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
                 <th>Actif</th>
-                <td>{% if user.actif %}Yes{% else %}No{% endif %}</td>
+                <td>{% if user.actif %}Oui{% else %}Non{% endif %}</td>
             </tr>
 
         </tbody>
     </table>
+    <br>
+    <a href="{{ path('user_index') }}"><input id="boutton" type="button" value="Revenir a la liste"></a>
+    <br><br>
+    <a href="{{ path('user_edit', { 'id': user.id }) }}" > <input id="boutton" type="button" value="Modifier"></a>
 
-    <ul>
-        <li>
-            <a href="{{ path('user_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('user_edit', { 'id': user.id }) }}">Edit</a>
-        </li>
-    </ul>
+    </div>
+
 {% endblock %}
 {% include 'footer.html.twig' %}

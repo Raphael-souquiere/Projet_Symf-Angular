@@ -53,30 +53,23 @@
             {{ form_widget(edit_form.idTypeUser) }}
         </div>
     </div>
-
+</div>
+    
     <div class="form-box">
         <input id="boutton" type="submit" value="Modifier" />
         {{ form_end(edit_form) }}
     </div>
     
-    
+    <br>
+
     <div class="form-box">
         {{ form_start(delete_form) }}
-        <input id="boutton" type="submit" value="Supprimer">
+        <input id="boutton" type="submit" value="Supprimer cet utilisateur" onclick="if(!confirm('Etes vous sure de vouloir supprimer cette utilisateur ainsi que toute les affectations qui lui sont associé ?')) { return false; }" >
         {{ form_end(delete_form) }}
     </div>
+    
+        <br>
+        <a href="{{ path('user_index') }}"><input id="boutton" type="button" value="Revenir a la liste"></a>
 
-    <ul>
-        <li>
-            <a href="{{ path('user_index') }}">Back to the list</a>
-        </li>
-
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete" onclick="if(!confirm('Etes vous sure de vouloir supprimer cette utilisateur ainsi que toute les affectations qui lui sont associé ?')) { return false; }" >
-            {{ form_end(delete_form) }}
-        </li>
-
-    </ul>
 {% endblock %}
 {% include 'footer.html.twig' %}
