@@ -23,6 +23,7 @@
                 <td>{% if user.actif %}Yes{% else %}No{% endif %}</td>
                 <td>{{ user.typeUser }}</td>
                 <td>{{ user.site }}</td>
+
                 <td>
                     <ul>
                         <a href="{{ path('user_show', { 'id': user.id }) }}" > <input class="boutton_1" id="margin" type="button" value="Plus de détails"></a>
@@ -33,9 +34,8 @@
         {% endfor %}
         </tbody>
     </table>
+        <br>
+    <a href="{{ path('user_new') }}"><input id="boutton" type="button" value="Créer un nouvel utilisateur"></a>
 
-    <ul>
-        <a href="{{ path('user_new') }}"><input class="boutton_2" type="button" value="Créer un nouvel utilisateur"></a>
-    </ul>
 {% endblock %}
 {% include 'footer.html.twig' %}
