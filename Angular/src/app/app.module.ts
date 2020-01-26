@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule }   from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DetailcleComponent } from './detailcle/detailcle.component';
+import { DetailuserComponent } from './detailuser/detailuser.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { DetailcleComponent } from './detailcle/detailcle.component';
     ListeuserComponent,
     HomeComponent,
     RecupdataComponent,
-    DetailcleComponent
+    DetailcleComponent,
+    DetailuserComponent
   ],
   imports: [
     BrowserModule,

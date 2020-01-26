@@ -1,17 +1,20 @@
-<p> {{valueRetour | json}}
-</p>
+{{valueRetour | json}}
+
  <br>
  <table>
  <tr>
- <td>id</td><td>Nom</td><td>Prenom</td><td>Actif</td><td>Créer</td><td>Dernière Update</td>
+ <td>Nom</td><td>Prenom</td><td>Actif</td><td>Type d'Utilisateur</td><td>Localisation</td>
  </tr>
 
  <tr *ngFor="let users of valueRetour">
- <td>{{ users.id }}</td>
  <td>{{ users.nom }}</td>
  <td>{{ users.prenom }}</td>
  <td>{{ users.actif }}</td>
- <td>{{ users.created.date | date :'short' }}</td>
- <td>{{ users.updated.date | date :'short' }}</td>
+ <td>{{ users.typeUser }}</td>
+ <td>{{ users.site }}</td>
+
+ <td>
+   <a routerLink='../detailuser/{{ users.id }}'>detail</a>
+  </td>
  </tr>
 </table>

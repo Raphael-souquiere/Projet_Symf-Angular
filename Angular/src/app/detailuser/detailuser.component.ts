@@ -4,13 +4,13 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'detailcle',
-  templateUrl: './detailcle.component.html',
-  styleUrls: ['./detailcle.component.css']
+  selector: 'detailuser',
+  templateUrl: './detailuser.component.html',
+  styleUrls: ['./detailuser.component.css']
 })
 
 @Injectable()
-export class DetailcleComponent implements OnInit {
+export class DetailuserComponent implements OnInit {
 
 
 public id;
@@ -29,10 +29,11 @@ constructor(private http: HttpClient, private route: ActivatedRoute){}
  doGET() {
    let id = this.route.snapshot.paramMap.get('id');
    console.log("GET");
-   let url = 'http://localhost:8000/api/detailcle/' + id;
+   let url = 'http://localhost:8000/api/detailuser/' + id;
    //this.http.get(url).subscribe(res => console.log(res.json()));
    this.http.get<any[]>(url).subscribe((response) => {this.valueRetour = response;},
    (error) => {console.log('Erreur ! : ' + error);});
+
  }
 
   ngOnInit() {

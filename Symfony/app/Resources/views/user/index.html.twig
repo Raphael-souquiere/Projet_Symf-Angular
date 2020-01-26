@@ -7,24 +7,22 @@
     <table class="list">
         <thead>
             <tr>
-                <th>Identifiant</th>
                 <th>nom</th>
                 <th>prenom</th>
                 <th>actif</th>
-                <th>Creation</th>
-                <th>Update</th>
+                <th>Type d'Utilisateur</th>
+                <th>Site</th>
             </tr>
         </thead>
         <tbody>
 
         {% for user in users %}
             <tr>
-                <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
                 <td>{{ user.nom }}</td>
                 <td>{{ user.prenom }}</td>
-                <td>{{ user.actif }}</td>
-                <td>{% if user.created %}{{ user.created|date('d/m/Y') }}{% endif %}</td>
-                <td>{% if user.updated %}{{ user.updated|date('d/m/Y') }}{% endif %}</td>
+                <td>{% if user.actif %}Yes{% else %}No{% endif %}</td>
+                <td>{{ user.typeUser }}</td>
+                <td>{{ user.site }}</td>
                 <td>
                     <ul>
                         <a href="{{ path('user_show', { 'id': user.id }) }}" > <input class="boutton_1" id="margin" type="button" value="Plus de détails"></a>

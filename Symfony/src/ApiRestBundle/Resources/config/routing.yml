@@ -9,11 +9,11 @@ api_rest_detailcle:
     defaults: { _controller: ApiRestBundle:Default:detailcle }
     requirements:
       id: '\d+'
-api_rest_listeutilisateur:
-    path:     /listeutilisateur
-    defaults: { _controller: ApiRestBundle:Default:listeutilisateur }
-api_rest_detailutilisateur:
-    path:     /detailutilisateur/{id}
-    defaults: { _controller: ApiRestBundle:Default:detailutilisateur }
+api_rest_listeuser:
+    path:     /listeuser
+    defaults: { _controller: ApiRestBundle:Default:listeuser }
+api_rest_detailuser:
+    path:     /detailuser/{id}
+    defaults: { _controller: ApiRestBundle:Default:detailuser }
     requirements:
       id: '\d+'

@@ -1,14 +1,16 @@
-<p>
-detail cle works! {{valueRetour | json}}
+<p>{{ valueRetour | json}}
 </p>
  <br>
  <table>
  <tr>
- <td>Code</td><td>Nom</td><td>Lat.</td><td>Long</td>
+ <td>Numero de clé</td><td>Date de Creation</td><td>Date d'arrèt</td><td>Montant Initial</td>
+ <td>Commentaire</td><td>Creation</td><td>Mise a jour</td>
  </tr>
 
- <tr *ngFor="let cle of valueRetour">
- <td>{{ cle.numCle }}</td>
- <td>{{ cle.id }}</td>
+ <tr *ngFor="let js of valueRetour">
+ <td>{{ js.numCle }}</td>
+
  </tr>
+
+  <a routerLink='../../recupdata'>retour</a>
 </table>

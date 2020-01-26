@@ -1,25 +1,23 @@
 {% include 'base.html.twig' %}
 {% block body %}
-    <h1>Cle list</h1>
+<link rel="stylesheet" href="{{ asset('css/style_user.css') }}" type="text/css"/>
+    <h1>Listes d'Affectations</h1>
     <table>
         <thead>
             <tr>
-                <th>id</th>
                 <th>Date Affectation</th>
                 <th>Date Suppression</th>
-                <th>Creation</th>
-                <th>Update</th>
-                <th>Etat</th>
+                <th>Utilisateur</th>
+                <th>Clé</th>
             </tr>
         </thead>
         <tbody>
         {% for affecte in affectes %}
             <tr>
-                <td><a href="{{ path('affecte_show', { 'id': affecte.id }) }}">{{ affecte.id }}</a></td>
                 <td>{% if affecte.dateAffectation %}{{ affecte.dateAffectation|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{% if affecte.dateSuppression %}{{ affecte.dateSuppression|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if affecte.created %}{{ affecte.created|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if affecte.updated %}{{ affecte.updated|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{affecte.numCle}}</td>
+                <td>{{affecte.nom}}  {{affecte.prenom}}</td>
                 <td>
                     <ul>
                         <li>

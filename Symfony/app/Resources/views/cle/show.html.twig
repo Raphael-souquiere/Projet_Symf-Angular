@@ -1,7 +1,7 @@
 {% include 'base.html.twig' %}
 {% block body %}
-    <h1>Annonce</h1>
-
+    <h1>Cle</h1>
+    <link rel="stylesheet" href="{{ asset('css/style_user.css') }}" type="text/css"/>
     <table>
         <tbody>
             <tr>
@@ -35,6 +35,10 @@
             <tr>
                 <th>Montant Initial</th>
                 <td>{{ cle.montantInitial }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ cle.causeArret }}</td>
             </tr>
         </tbody>
     </table>

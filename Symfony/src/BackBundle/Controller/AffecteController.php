@@ -19,13 +19,16 @@ class AffecteController extends Controller
           'affectes' => $affectes,
       ));
   }
-  public function showAction($id)
+
+
+  public function showAction( $id )
   {
       $em = $this->getDoctrine()->getManager();
 
-      $affecte = $em->getRepository(Affecte::class)->findOne($id);
+      $affecte = $em->getRepository(Affecte::class)->findOneBack($id);
+
       return $this->render('affecte/show.html.twig', array(
-          'affecte' => $affecte,
+            'affecte' => $affecte,
       ));
   }
 

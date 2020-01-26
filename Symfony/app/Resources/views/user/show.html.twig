@@ -1,7 +1,9 @@
 {% include 'base.html.twig' %}
 {% block body %}
-    <h1>User</h1>
 
+<link rel="stylesheet" href="{{ asset('css/style_user.css') }}" type="text/css"/>
+
+    <h1>User</h1>
     <table>
         <tbody>
             <tr>
@@ -17,20 +19,24 @@
                 <td>{{ user.prenom }}</td>
             </tr>
             <tr>
-                <th>actif</th>
-                <td>{{ user.actif }}</td>
+                <th>Actif</th>
+              <td>{% if user.actif %}Yes{% else %}No{% endif %}</td>
             </tr>
             <tr>
                 <th>Creation</th>
                 <td>{% if user.created %}{{ user.created|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Update</th>
+                <th>Mise a jour</th>
                 <td>{% if user.updated %}{{ user.updated|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Actif</th>
-                <td>{% if user.actif %}Yes{% else %}No{% endif %}</td>
+                <th>Type d'Utilisateur</th>
+                <td>{{ user.typeUser }}</td>
+            </tr>
+              <th>Site</th>
+              <td>{{ user.site }}</td>
+            <tr>
             </tr>
 
         </tbody>

@@ -1,12 +1,12 @@
 {% include 'base.html.twig' %}
 {% block body %}
-    <h1>Annonce</h1>
+    <h1>Affectation</h1>
 
     <table>
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ affecte.id }}</td>
+              <th>Identifiant</th>
+              <td>{{affecte.id}}</td>
             </tr>
             <tr>
                 <th>Date affectation</th>
@@ -21,8 +21,16 @@
                 <td>{% if affecte.created %}{{ affecte.created|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Update</th>
+                <th>Mise a jour</th>
                 <td>{% if affecte.updated %}{{ affecte.updated|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+              <th>Clé</th>
+              <td>{{affecte.numCle}}</td>
+            </tr>
+            <tr>
+              <th>User</th>
+              <td>{{affecte.nom }}  {{ affecte.prenom}}</td>
             </tr>
         </tbody>
     </table>
@@ -35,5 +43,7 @@
             <a href="{{ path('affecte_edit', { 'id': affecte.id }) }}">Edit</a>
         </li>
     </ul>
+
+
 {% endblock %}
 {% include 'footer.html.twig' %}

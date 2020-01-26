@@ -28,7 +28,7 @@ class CleController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $cle = $em->getRepository(Cle::class)->findOne($id);
+        $cle = $em->getRepository(Cle::class)->findOneBack($id);
         return $this->render('cle/show.html.twig', array(
             'cle' => $cle,
         ));

@@ -21,12 +21,8 @@ class UserController extends Controller
   public function showallAction($recherche = null)
   {
       $em = $this->getDoctrine()->getManager();
+      $users = $em->getRepository(User::class)->findAllOrderedByName();
 
-      if ($recherche == null){
-        $users = $em->getRepository(User::class)->findAllOrderedByName();
-      }else{
-        $users = $em->getRepository(User::class)->findByRecherche($recherche);
-      }
       return $this->render('user/index.html.twig', array(
           'users' => $users,
       ));
@@ -39,7 +35,7 @@ class UserController extends Controller
   {
       $em = $this->getDoctrine()->getManager();
 
-      $user = $em->getRepository(User::class)->findOne($id);
+      $user = $em->getRepository(User::class)->findOneBack($id);
       return $this->render('user/show.html.twig', array(
           'user' => $user,
       ));
