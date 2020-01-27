@@ -11,6 +11,8 @@ import { FormsModule }   from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DetailcleComponent } from './detailcle/detailcle.component';
 import { DetailuserComponent } from './detailuser/detailuser.component';
+import { DetailcleusersComponent } from './detailcleusers/detailcleusers.component';
+import { DetailuserclesComponent } from './detailusercles/detailusercles.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { DetailuserComponent } from './detailuser/detailuser.component';
     HomeComponent,
     RecupdataComponent,
     DetailcleComponent,
-    DetailuserComponent
+    DetailuserComponent,
+    DetailcleusersComponent,
+    DetailuserclesComponent
   ],
   imports: [
     BrowserModule,

@@ -38,20 +38,33 @@ class DefaultController extends Controller
           ->getRepository(Cle::class)
           ->findOne($id);
 
-      $users = $this->getDoctrine()
-          ->getRepository(User::class)
-          ->findUserByCle($id);
-
-          $array['cle'] = $cle;
-          $array['users'] = $users;
-
           $response = new Response();
-          $response->setContent(json_encode($array , JSON_PRETTY_PRINT));
+          $response->setContent(json_encode($cle));
           //$response->setContent(json_encode($cle));
           $response->headers->set('Content-Type', 'application/json');
           $response->headers->set('Access-Control-Allow-Origin', '*');
           return $response;
     }
+
+
+
+    public function detailcleusersAction($id)
+    {
+
+      $users = $this->getDoctrine()
+          ->getRepository(User::class)
+          ->findUserByCle($id);
+
+
+          $response = new Response();
+          $response->setContent(json_encode($users));
+          //$response->setContent(json_encode($cle));
+          $response->headers->set('Content-Type', 'application/json');
+          $response->headers->set('Access-Control-Allow-Origin', '*');
+          return $response;
+    }
+
+
 
 
     public function listeuserAction()
@@ -73,13 +86,25 @@ class DefaultController extends Controller
           ->getRepository(User::class)
           ->findOne($id);
 
-      $affectes = $this->getDoctrine()
-          ->getRepository(User::class)
-          ->findUserByCle($id);
 
           $response = new Response();
           //$response->setContent(json_encode(array("user" => $user , "affectes" => $affectes)));
           $response->setContent(json_encode($user));
+          $response->headers->set('Content-Type', 'application/json');
+          $response->headers->set('Access-Control-Allow-Origin', '*');
+          return $response;
+    }
+    public function detailuserclesAction($id)
+    {
+
+      $cles = $this->getDoctrine()
+          ->getRepository(Cle::class)
+          ->findCleByUser($id);
+
+
+          $response = new Response();
+          $response->setContent(json_encode($cles));
+          //$response->setContent(json_encode($cle));
           $response->headers->set('Content-Type', 'application/json');
           $response->headers->set('Access-Control-Allow-Origin', '*');
           return $response;

@@ -39,4 +39,18 @@ class CleRepository extends EntityRepository
                 'SELECT COUNT(p) FROM BackBundle:Cle p WHERE p.idEtat = 1'
             )->getSingleScalarResult();
     }
+
+    public function findCleByUser($id)
+    {
+        return $this->getEntityManager()
+            ->createQuery('SELECT c.id,c.numCle,c.montantInitial,c.commentaire,e.causeArret,c.dateArret,c.dateCreation,a.dateAffectation,a.dateSuppression
+            FROM BackBundle:Cle c
+            INNER JOIN BackBundle:Affecte a WHERE a.idCle = c.id
+            INNER JOIN BackBundle:User p WHERE a.idUser = p.id  AND p.id = :id
+            INNER JOIN BackBundle:Etat e WHERE c.idEtat = e.id
+            INNER JOIN BackBundle:TypeUser t WHERE p.idTypeUser = t.id
+            INNER JOIN BackBundle:Site s WHERE p.idSite = s.id')
+              ->setParameter("id", $id)
+            ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
+    }
 }

@@ -17,3 +17,13 @@ api_rest_detailuser:
     defaults: { _controller: ApiRestBundle:Default:detailuser }
     requirements:
       id: '\d+'
+api_rest_detailcleusers:
+    path:     /detailcleusers/{id}
+    defaults: { _controller: ApiRestBundle:Default:detailcleusers }
+    requirements:
+      id: '\d+'
+api_rest_detailusercles:
+    path:     /detailusercles/{id}
+    defaults: { _controller: ApiRestBundle:Default:detailusercles }
+    requirements:
+      id: '\d+'
