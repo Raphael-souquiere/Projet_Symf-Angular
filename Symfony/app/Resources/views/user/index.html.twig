@@ -2,7 +2,6 @@
 {% block body %}
 
 <link rel="stylesheet" href="{{ asset('css/style_user.css') }}" type="text/css"/>
-
     <h1>Liste des Utilisateurs</h1>
     <table class="list">
         <thead>
@@ -34,8 +33,9 @@
         {% endfor %}
         </tbody>
     </table>
+    <div id="box">
         <br>
     <a href="{{ path('user_new') }}"><input id="boutton" type="button" value="Créer un nouvel utilisateur"></a>
-
-{% endblock %}
+    </div>
+{% endblock %}  
 {% include 'footer.html.twig' %}

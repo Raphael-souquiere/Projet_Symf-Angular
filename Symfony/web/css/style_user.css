@@ -82,3 +82,9 @@ h1{
 ul{
     padding-left: 0px;
 }
+
+#box{
+    bottom:0;
+    margin-bottom: 20px;
+    width: 100%;
+}
