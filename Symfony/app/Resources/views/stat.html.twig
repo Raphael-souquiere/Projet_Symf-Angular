@@ -4,21 +4,41 @@
 <link rel="stylesheet" href="{{ asset('css/style_user.css') }}" type="text/css"/>
 
     <h1>Liste des Utilisateurs</h1>
+
     <table class="list">
         <thead>
             <tr>
-                <th>Utilisateur actif</th>
-                <th>Cle active</th>
+                <th>Nombre de Utilisateurs totaux</th>
+                <th>Nombre de Utilisateur actif</th>
+                <th>Nombre de Utilisateur inactif</th>
             </tr>
         </thead>
         <tbody>
-
             <tr>
-                <td>{{ user }}</td>
-                <td>{{ cle }}</td>
+                <td>{{ nbuser }}</td>
+                <td>{{ nbuseractif }}</td>
+                <td>{{ nbuserinactif }}</td>
             </tr>
         </tbody>
     </table>
+    <table class="list">
+        <thead>
+            <tr>
+                <th>Nombre de Cles totales</th>
+                <th>Nombre de Cle active</th>
+                <th>Nombre de Cle inactive</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ nbcle }}</td>
+                <td>{{ nbcleactif }}</td>
+                <td>{{ nbcleinactif }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
 
     <ul>
     </ul>

@@ -57,13 +57,7 @@ class UserRepository extends EntityRepository
             ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
     }
 
-    public function findUserActif()
-    {
-        return $this->getEntityManager()
-            ->createQuery(
-                'SELECT COUNT(p) FROM BackBundle:User p WHERE p.actif = 1'
-            )->getSingleScalarResult();
-    }
+
 
     public function findUserByCle($id)
     {
@@ -78,6 +72,35 @@ class UserRepository extends EntityRepository
             INNER JOIN BackBundle:Site s WHERE p.idSite = s.id')
               ->setParameter("id", $id)
             ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
+    }
+
+
+
+//stat
+
+
+    public function findUserActif()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT COUNT(p) FROM BackBundle:User p WHERE p.actif = 1'
+            )->getSingleScalarResult();
+    }
+
+    public function findUserInactif()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT COUNT(p) FROM BackBundle:User p WHERE p.actif = 0'
+            )->getSingleScalarResult();
+    }
+
+    public function findUserTotal()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT COUNT(p) FROM BackBundle:User p'
+            )->getSingleScalarResult();
     }
 
 }

@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use BackBundle\Entity\User;
 use BackBundle\Entity\Cle;
+use BackBundle\Entity\TypeUser;
 use \Datetime;
 
 class StatistiqueController extends Controller
@@ -22,16 +23,30 @@ class StatistiqueController extends Controller
   public function statAction()
   {
       $em = $this->getDoctrine()->getManager();
-        $statuser = $em->getRepository(User::class)->findUserActif();
+        $nbuseractif = $em->getRepository(User::class)->findUserActif();
+        $nbuserinactif = $em->getRepository(User::class)->findUserInactif();
+        $nbuser = $em->getRepository(User::class)->findUserTotal();
 
-        $statcle = $em->getRepository(Cle::class)->findCleActif();
+        $nbcleactif = $em->getRepository(Cle::class)->findCleActif();
+        $nbcleinactif = $em->getRepository(Cle::class)->findCleInactif();
+        $nbcle = $em->getRepository(Cle::class)->findCleTotal();
 
-        $statcle = $em->getRepository(Cle::class)->findCleActif();
+        //$nbclebysite = $em->getRepository(Cle::class)->findCleBySite();
 
-        $statcle = $em->getRepository(Cle::class)->findCleActif();
+        $type = $em->getRepository(TypeUser::class)->findAllOrderedByName();
+        dump($type);
 
+        $nbclebytypes = $em->getRepository(Cle::class)->findCleByType($type[3]['typeUser']);
+
+        dump($nbclebytypes);
         return $this->render('stat.html.twig', array(
-            'user' => $statuser,'cle' => $statcle
+            'nbuseractif' => $nbuseractif,
+            'nbuserinactif' => $nbuserinactif,
+            'nbuser' => $nbuser,
+            'nbcleactif' => $nbcleactif,
+            'nbcleinactif' => $nbcleinactif,
+            'nbcle' => $nbcle,
+          //  'nbclebytypes' => $nbclebytypes,
         ));
   }
 
