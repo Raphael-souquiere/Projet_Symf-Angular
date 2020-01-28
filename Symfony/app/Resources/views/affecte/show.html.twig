@@ -1,9 +1,8 @@
 {% include 'base.html.twig' %}
 {% block body %}
 
-<link rel="stylesheet" href="{{ asset('css/style_cle_show.css') }}" type="text/css"/>
-
-    <h1>Affectation</h1>
+<link rel="stylesheet" href="{{ asset('css/style_user_show.css') }}" type="text/css"/>
+    <h1>Détails de l'affectation</h1>
 
     <table>
         <tbody>
@@ -36,16 +35,11 @@
               <td>{{affecte.nom }}  {{ affecte.prenom}}</td>
             </tr>
         </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('affecte_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('affecte_edit', { 'id': affecte.id }) }}">Edit</a>
-        </li>
-    </ul>
+            </table>
+            <br>
+            <a href="{{ path('affecte_index') }}" > <input id="boutton" id="margin" type="button" value="Revenir à la liste"></a>
+            <br><br>
+            <a href="{{ path('affecte_edit', { 'id': affecte.id }) }}" > <input id="boutton" type="button" value="Modifier"></a>
 
 
 {% endblock %}

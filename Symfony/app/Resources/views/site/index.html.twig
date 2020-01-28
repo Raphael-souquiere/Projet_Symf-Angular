@@ -1,6 +1,9 @@
 {% include 'base.html.twig' %}
 {% block body %}
-    <h1>Etat list</h1>
+<link rel="stylesheet" href="{{ asset('css/style_etat.css') }}" type="text/css"/>
+
+
+    <h1>Liste des sites disponibles</h1>
     <table>
         <thead>
             <tr>
@@ -14,24 +17,17 @@
                 <td><a href="{{ path('site_show', { 'id': site.id }) }}">{{ site.id }}</a></td>
                 <td>{{ site.site }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('site_show', { 'id': site.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('site_edit', { 'id': site.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                     <ul>
+            <a href="{{ path('site_show', { 'id': site.id }) }}" > <input class="boutton_1" id="margin" type="button" value="Plus de détails"></a>
+            <a href="{{ path('site_edit', { 'id': site.id }) }}" > <input class="boutton_1" type="button" value="Modifier"></a>
+        </ul>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+    <br>
+    <a href="{{ path('site_new') }}"><input id="boutton" type="button" value="Créer un nouveau site"></a>
 
-    <ul>
-        <li>
-            <a href="{{ path('site_new') }}">Créer un nouveau site</a>
-        </li>
-    </ul>
 {% endblock %}
 {% include 'footer.html.twig' %}

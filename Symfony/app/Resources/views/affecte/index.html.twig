@@ -1,42 +1,36 @@
 {% include 'base.html.twig' %}
 {% block body %}
-<link rel="stylesheet" href="{{ asset('css/style_cle.css') }}" type="text/css"/>
-    <h1>Listes d'Affectations</h1>
+<link rel="stylesheet" href="{{ asset('css/style_user.css') }}" type="text/css"/>
+    <h1>Listes des affectations</h1>
     <table>
         <thead>
             <tr>
-                <th>Date Affectation</th>
-                <th>Date Suppression</th>
+                <th>Date d'affectation</th>
+                <th>Date de fin de l'affectation</th>
+                <th>Clé affecté</th>
                 <th>Utilisateur</th>
-                <th>Clé</th>
             </tr>
         </thead>
         <tbody>
         {% for affecte in affectes %}
             <tr>
-                <td>{% if affecte.dateAffectation %}{{ affecte.dateAffectation|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if affecte.dateSuppression %}{{ affecte.dateSuppression|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if affecte.dateAffectation %}{{ affecte.dateAffectation|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if affecte.dateSuppression %}{{ affecte.dateSuppression|date('Y-m-d') }}{% endif %}</td>
                 <td>{{affecte.numCle}}</td>
                 <td>{{affecte.nom}}  {{affecte.prenom}}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('affecte_show', { 'id': affecte.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('affecte_edit', { 'id': affecte.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
+        <ul>
+            <a href="{{ path('affecte_show', { 'id': affecte.id }) }}" > <input class="boutton_1" id="margin" type="button" value="Plus de détails"></a>
+            <a href="{{ path('affecte_edit', { 'id': affecte.id }) }}" > <input class="boutton_1" type="button" value="Modifier"></a>
+        </ul>
+    </td>
             </tr>
+
         {% endfor %}
         </tbody>
     </table>
+    <br>
+    <a href="{{ path('affecte_new') }}"><input id="boutton" type="button" value="Créer une nouvelle affectation"></a>
 
-    <ul>
-        <li>
-            <a href="{{ path('affecte_new') }}">Créer un nouvelle affectation</a>
-        </li>
-    </ul>
 {% endblock %}
 {% include 'footer.html.twig' %}

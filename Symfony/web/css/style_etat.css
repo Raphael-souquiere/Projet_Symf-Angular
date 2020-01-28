@@ -23,7 +23,7 @@
 }
 
 table {
-    width: 100%;
+    width: 33%;
 }
   
 table, th, td {
@@ -44,7 +44,7 @@ th, td {
 #boutton{
     padding:1;
     border-radius: 10px;
-    width: auto;
+    width: 200px;
     height: 50px;
     margin-left: 10px;
 }

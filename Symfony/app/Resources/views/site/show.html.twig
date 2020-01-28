@@ -1,5 +1,7 @@
 {% include 'base.html.twig' %}
 {% block body %}
+<link rel="stylesheet" href="{{ asset('css/style_etat_show.css') }}" type="text/css"/>
+
     <h1>Site</h1>
 
     <table>
@@ -9,21 +11,14 @@
                 <td>{{ site.id }}</td>
             </tr>
             <tr>
-                <th>Titre</th>
+                <th>Nom du site</th>
                 <td>{{ site.site }}</td>
             </tr>
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('site_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('site_edit', { 'id': site.id }) }}">Edit</a>
-        </li>
-        <li>
-        </li>
-    </ul>
+    <br>
+    <a href="{{ path('site_index') }}"><input id="boutton" type="button" value="Revenir a la liste"></a>
+    <br><br>
+    <a href="{{ path('site_edit', { 'id': site.id }) }}"> <input id="boutton" type="button" value="Modifier"></a>
 {% endblock %}
 {% include 'footer.html.twig' %}

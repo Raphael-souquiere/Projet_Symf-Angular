@@ -63,17 +63,17 @@
                 {{ form_widget(form.idTypeUser)}}
             </div>
         </div>
-
+        </div>
 
         <div class="form-box">
             <input id="boutton" type="submit" value="Créer un nouvel utilisateur" />
             {{ form_end(form) }}
         </div>
 
+        <br>
+        <a href="{{ path('user_index') }}"><input id="boutton" type="button" value="Revenir a la liste"></a>
 
-        <a href="{{ path('user_index') }}"><input class="boutton_3" type="button" value="Revenir a la liste"></a>
-
-    </div>
+    
     </body>
 </html>
 {% include 'footer.html.twig' %}

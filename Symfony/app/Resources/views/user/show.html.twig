@@ -1,12 +1,9 @@
 {% include 'base.html.twig' %}
 {% block body %}
 
-
-    <h1>User</h1>
-
 <link rel="stylesheet" href="{{ asset('css/style_user_show.css') }}" type="text/css"/>
 
-    <h1>User</h1>
+    <h1>Détails de l'utilisateur : {{user.prenom}} {{user.nom}}</h1>
 
     <div class="container">
 
@@ -26,7 +23,7 @@
             </tr>
             <tr>
                 <th>Actif</th>
-              <td>{% if user.actif %}Yes{% else %}No{% endif %}</td>
+              <td>{% if user.actif %}Oui{% else %}Non{% endif %}</td>
             </tr>
             <tr>
                 <th>Creation</th>
