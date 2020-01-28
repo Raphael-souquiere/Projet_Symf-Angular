@@ -32,14 +32,6 @@ class CleRepository extends EntityRepository
             ->getOneOrNullResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
     }
 
-    public function findCleActif()
-    {
-        return $this->getEntityManager()
-            ->createQuery(
-                'SELECT COUNT(p) FROM BackBundle:Cle p WHERE p.idEtat = 1'
-            )->getSingleScalarResult();
-    }
-
     public function findCleByUser($id)
     {
         return $this->getEntityManager()
@@ -53,4 +45,66 @@ class CleRepository extends EntityRepository
               ->setParameter("id", $id)
             ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
     }
+
+
+    //stat
+
+
+        public function findCleActif()
+        {
+            return $this->getEntityManager()
+                ->createQuery(
+                    'SELECT COUNT(p) FROM BackBundle:Cle p
+                    INNER JOIN BackBundle:Etat e
+                    WHERE p.idEtat = e.id AND e.causeArret = :Actif')
+                    ->setParameter("Actif", "Activé")
+                ->getSingleScalarResult();
+        }
+
+        public function findCleInactif()
+        {
+          return $this->getEntityManager()
+              ->createQuery(
+                  'SELECT COUNT(p) FROM BackBundle:Cle p
+                  INNER JOIN BackBundle:Etat e
+                  WHERE p.idEtat = e.id AND e.causeArret != :Actif')
+                  ->setParameter("Actif", "Activé")
+              ->getSingleScalarResult();
+        }
+
+        public function findCleTotal()
+        {
+            return $this->getEntityManager()
+                ->createQuery(
+                    'SELECT COUNT(p) FROM BackBundle:Cle p'
+                )->getSingleScalarResult();
+        }
+
+
+
+
+        public function findCleByType($type)
+        {
+            return $this->getEntityManager()
+                ->createQuery(
+                    'SELECT COUNT(p) FROM BackBundle:Cle c
+                    INNER JOIN BackBundle:Affecte a WHERE a.idCle = c.id
+                    INNER JOIN BackBundle:User p WHERE a.idUser = p.id
+                    INNER JOIN BackBundle:Etat e WHERE c.idEtat = e.id
+                    INNER JOIN BackBundle:TypeUser t WHERE p.idTypeUser = t.id
+                    WHERE c.idEtat = e.id AND t.typeUser = :type')
+                    ->setParameter("type",$type)
+                ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
+        }
+
+        /*public function findCleInactif()
+        {
+          return $this->getEntityManager()
+              ->createQuery(
+                  'SELECT COUNT(p) FROM BackBundle:Cle p
+                  INNER JOIN BackBundle:Etat e
+                  WHERE p.idEtat = e.id AND e.causeArret != :Actif')
+                  ->setParameter("Actif", "Activé")
+              ->getSingleScalarResult();
+        }*/
 }

@@ -47,6 +47,7 @@ class CleController extends Controller
             $datetime = new DateTime();
             $cle->setCreated($datetime);
             $cle->setUpdated($datetime);
+            $cle->setDateCreation($datetime);
             $em = $this->getDoctrine()->getManager();
             $em->persist($cle);
             $em->flush();
