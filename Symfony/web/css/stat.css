@@ -1,3 +1,13 @@
+.mensuelle{
+  height:200pt;
+  overflow:auto;
+}
+
+.case{
+  width: 10px;
+}
+
+
 #container{
 
     width: 100%;
@@ -52,7 +62,7 @@ th, td {
 .boutton_1 {
     background-color: #e7e7e7; color: black;
     border-radius: 8px;
-    width: 70%;
+    width: 50%;
 }
 
 .boutton_2 {

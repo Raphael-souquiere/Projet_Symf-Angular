@@ -3,6 +3,8 @@
 namespace BackBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use DoctrineExtensions\Query\Mysql\Month;
+use DoctrineExtensions\Query\Mysql\Year;
 
 class CleRepository extends EntityRepository
 {
@@ -14,6 +16,8 @@ class CleRepository extends EntityRepository
             )
             ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
     }
+
+
     public function findOne($id)
     {
         return $this->getEntityManager()
@@ -83,17 +87,41 @@ class CleRepository extends EntityRepository
 
 
 
-        public function findCleByType($type)
+        public function findCleByType()
         {
             return $this->getEntityManager()
                 ->createQuery(
-                    'SELECT COUNT(p) FROM BackBundle:Cle c
+                    'SELECT t.typeUser ,COUNT(c.id) AS nb
+                    FROM BackBundle:Cle c
                     INNER JOIN BackBundle:Affecte a WHERE a.idCle = c.id
                     INNER JOIN BackBundle:User p WHERE a.idUser = p.id
-                    INNER JOIN BackBundle:Etat e WHERE c.idEtat = e.id
                     INNER JOIN BackBundle:TypeUser t WHERE p.idTypeUser = t.id
-                    WHERE c.idEtat = e.id AND t.typeUser = :type')
-                    ->setParameter("type",$type)
+                    GROUP BY t.typeUser')
+                ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
+        }
+
+        public function findCleBySite()
+        {
+            return $this->getEntityManager()
+                ->createQuery(
+                    'SELECT COUNT(c)nb,s.site FROM BackBundle:Cle c
+                    INNER JOIN BackBundle:Affecte a WHERE a.idCle = c.id
+                    INNER JOIN BackBundle:User p WHERE a.idUser = p.id
+                    INNER JOIN BackBundle:Site s WHERE p.idSite = s.id
+                    GROUP BY s.site ')
+                ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
+        }
+
+        public function evolutionmensuelcle()
+        {
+            return $this->getEntityManager()
+                ->createQuery(
+                      'SELECT MONTH(c.created) as da,
+                              YEAR(c.created) as ye,
+                                   COUNT(c) as nb
+                      FROM BackBundle:Cle c
+                      GROUP BY da,ye
+                      ORDER BY YEAR(c.created),MONTH(c.created) ASC')
                 ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
         }
 

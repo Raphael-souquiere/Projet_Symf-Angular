@@ -102,5 +102,17 @@ class UserRepository extends EntityRepository
                 'SELECT COUNT(p) FROM BackBundle:User p'
             )->getSingleScalarResult();
     }
+    public function evolutionmensueluser()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                  'SELECT MONTH(c.created) as da,
+                          YEAR(c.created) as ye,
+                               COUNT(c) as nb
+                  FROM BackBundle:User c
+                  GROUP BY da,ye
+                  ORDER BY YEAR(c.created),MONTH(c.created) ASC')
+            ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
+    }
 
 }
