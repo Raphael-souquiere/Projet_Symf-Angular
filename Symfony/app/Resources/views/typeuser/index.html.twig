@@ -1,5 +1,6 @@
 {% include 'base.html.twig' %}
 {% block body %}
+<link rel="stylesheet" href="{{ asset('css/style_etat.css') }}" type="text/css"/>
     <h1>TypeUser list</h1>
     <table>
         <thead>
@@ -13,25 +14,18 @@
             <tr>
                 <td><a href="{{ path('typeuser_show', { 'id': typeuser.id }) }}">{{ typeuser.id }}</a></td>
                 <td>{{ typeuser.typeUser }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('typeuser_show', { 'id': typeuser.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('typeuser_edit', { 'id': typeuser.id }) }}">edit</a>
-                        </li>
-                    </ul>
+            
+    <td>
+                     <ul>
+            <a href="{{ path('typeuser_show', { 'id': typeuser.id }) }}" > <input class="boutton_1" id="margin" type="button" value="Plus de détails"></a>
+            <a href="{{ path('typeuser_edit', { 'id': typeuser.id }) }}" > <input class="boutton_1" type="button" value="Modifier"></a>
+        </ul>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('typeuser_new') }}">Créer un nouveau type d'utilisateur</a>
-        </li>
-    </ul>
+    <br>
+    <a href="{{ path('typeuser_new') }}"><input id="boutton" type="button" value="Créer un nouveau type d'utilisateur"></a>
 {% endblock %}
 {% include 'footer.html.twig' %}

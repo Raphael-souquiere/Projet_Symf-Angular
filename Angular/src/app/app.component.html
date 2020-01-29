@@ -1,9 +1,11 @@
 
-<div>
+<body>
+<div id="container">
   <ul>
-    <li><a routerLink="/home">Acceuil</a></li>
-    <li><a routerLink="/listeuser">Liste Utilisateur</a></li>
-    <li><a routerLink="/recupdata">Liste Clé</a></li>
+    <div class="boutton_box"><a routerLink="/home"><input id="boutton" type="button" value="Acceuil"></a></div>
+    <div class="boutton_box"><a routerLink="/listeuser"><input id="boutton" type="button" value="Liste des utilisateurs"></a></div>
+    <div class="boutton_box"><a routerLink="/recupdata"><input id="boutton" type="button" value="Liste des clés"></a></div>
   </ul>
 </div>
 <router-outlet></router-outlet>
+</body>

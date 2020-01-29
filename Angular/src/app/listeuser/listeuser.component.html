@@ -1,4 +1,5 @@
- <br>
+ <body>
+ <br><br>
  <table>
  <tr>
  <td>Nom</td><td>Prenom</td><td>Actif</td><td>Type d'Utilisateur</td><td>Localisation</td>
@@ -12,7 +13,8 @@
  <td>{{ users.site }}</td>
 
  <td>
-   <button class="boutton_1" type="button" name="button"><a routerLink='../detailuser/{{ users.id }}'>detail</a></button>
+    <a routerLink='../detailuser/{{ users.id }}' > <input id="boutton" type="button" value="Plus de détails"></a>
   </td>
  </tr>
 </table>
+</body>
