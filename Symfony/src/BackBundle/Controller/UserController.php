@@ -104,7 +104,15 @@ class UserController extends Controller
 
             $em = $this->getDoctrine()->getManager();
             $em->remove($user);
+            try{
+              
             $em->flush();
+          }catch (\Doctrine\DBAL\DBALException $e){
+            return $this->render('error.html.twig', [
+                  "title" => "Une erreur est survenue lors de la suppression de l'entité",
+                  "message" => $e->getMessage()
+              ]);
+            }
         }
 
         return $this->redirectToRoute('user_index');

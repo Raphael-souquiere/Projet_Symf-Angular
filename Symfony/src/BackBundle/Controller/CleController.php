@@ -97,9 +97,18 @@ class CleController extends Controller
 
               $em = $this->getDoctrine()->getManager();
               $em->remove($cle);
+
+              try{
               $em->flush();
+            }catch (\Doctrine\DBAL\DBALException $e){
+              return $this->render('error.html.twig', [
+                    "title" => "Une erreur est survenue lors de la suppression de l'entité",
+                    "message" => $e->getMessage()
+                ]);
+              }
           }
 
           return $this->redirectToRoute('cle_index');
-      }
+
+}
 }

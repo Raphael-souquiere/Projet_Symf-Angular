@@ -5,6 +5,7 @@ namespace BackBundle\Repository;
 use Doctrine\ORM\EntityRepository;
 use DoctrineExtensions\Query\Mysql\Month;
 use DoctrineExtensions\Query\Mysql\Year;
+use DoctrineExtensions\Query\Mysql\IfNull;
 
 class CleRepository extends EntityRepository
 {
@@ -104,7 +105,7 @@ class CleRepository extends EntityRepository
         {
             return $this->getEntityManager()
                 ->createQuery(
-                    'SELECT COUNT(c)nb,s.site FROM BackBundle:Cle c
+                    'SELECT IFNULL(COUNT(c), 0) AS nb ,s.site FROM BackBundle:Cle c
                     INNER JOIN BackBundle:Affecte a WHERE a.idCle = c.id
                     INNER JOIN BackBundle:User p WHERE a.idUser = p.id
                     INNER JOIN BackBundle:Site s WHERE p.idSite = s.id
