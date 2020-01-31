@@ -10,7 +10,7 @@ import { DetailuserComponent } from './detailuser/detailuser.component';
 import { DetailcleusersComponent } from './detailcleusers/detailcleusers.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'listeuser', component: ListeuserComponent },
   { path: 'recupdata', component: RecupdataComponent },
   { path: 'detailcle/:id', component: DetailcleComponent },
