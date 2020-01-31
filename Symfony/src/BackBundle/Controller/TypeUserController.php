@@ -45,10 +45,17 @@ class TypeUserController extends Controller
       if ($form->isSubmitted() && $form->isValid()) {
           $em = $this->getDoctrine()->getManager();
           $em->persist($typeuser);
-          $em->flush();
-
-          return $this->redirectToRoute('typeuser_show', array('id' => $typeuser->getId()));
+      try{
+        $em->flush();
+      }catch (\Doctrine\DBAL\DBALException $e){
+        return $this->render('error.html.twig', [
+          "title" => "Une erreur est survenue lors de la suppression de l'entité",
+          "message" => $e->getMessage(),
+          "errorcode" => $e->getErrorCode()
+        ]);
       }
+      return $this->redirectToRoute('typeuser_show', array('id' => $typeuser->getId()));
+    }
 
       return $this->render('typeuser/new.html.twig', array('form' => $form->createView(),));
   }
@@ -65,8 +72,17 @@ class TypeUserController extends Controller
         $editForm = $this->createForm('BackBundle\Form\TypeUserType', $typeuser)->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $em = $this->getDoctrine()->getManager();
 
+            try{
+              $em->flush();
+            }catch (\Doctrine\DBAL\DBALException $e){
+              return $this->render('error.html.twig', [
+                "title" => "Une erreur est survenue lors de la suppression de l'entité",
+                "message" => $e->getMessage(),
+                "errorcode" => $e->getErrorCode()
+              ]);
+            }
             return $this->redirectToRoute('typeuser_show', array('id' => $typeuser->getId()));
         }
 
