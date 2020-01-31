@@ -61,7 +61,17 @@ class AffecteController extends Controller
 
       $em = $this->getDoctrine()->getManager();
       $em->persist($affecte);
-      $em->flush();
+
+      try{
+
+        $em->flush();
+      }catch (\Doctrine\DBAL\DBALException $e){
+        return $this->render('error.html.twig', [
+          "title" => "Une erreur est survenue lors de la creation de l'entité",
+          "message" => $e->getMessage(),
+            "errorcode" => $e->getErrorCode()
+        ]);
+      }
 
       return $this->redirectToRoute('affecte_show', array('id' => $affecte->getId()));
     }
@@ -87,9 +97,18 @@ class AffecteController extends Controller
       $datetime = new DateTime();
       $affecte->setUpdated($datetime);
 
+      try{
+
+            $this->getDoctrine()->getManager()->flush();
+      }catch (\Doctrine\DBAL\DBALException $e){
+        return $this->render('error.html.twig', [
+          "title" => "Une erreur est survenue lors de la modification de l'entité",
+          "message" => $e->getMessage(),
+            "errorcode" => $e->getErrorCode()
+        ]);
+      }
 
 
-      $this->getDoctrine()->getManager()->flush();
 
       return $this->redirectToRoute('affecte_show', array('id' => $affecte->getId()));
     }
@@ -124,7 +143,8 @@ class AffecteController extends Controller
       }catch (\Doctrine\DBAL\DBALException $e){
         return $this->render('error.html.twig', [
           "title" => "Une erreur est survenue lors de la suppression de l'entité",
-          "message" => $e->getMessage()
+          "message" => $e->getMessage(),
+            "errorcode" => $e->getErrorCode()
         ]);
       }
     }
