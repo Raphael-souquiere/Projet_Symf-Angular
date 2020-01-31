@@ -54,7 +54,18 @@ class CleController extends Controller
       $cle->setDateCreation($datetime);
       $em = $this->getDoctrine()->getManager();
       $em->persist($cle);
-      $em->flush();
+
+
+      try{
+
+        $em->flush();
+      }catch (\Doctrine\DBAL\DBALException $e){
+        return $this->render('error.html.twig', [
+          "title" => "Une erreur est survenue lors de la suppression de l'entité",
+          "message" => $e->getMessage(),
+            "errorcode" => $e->getErrorCode()
+        ]);
+      }
 
       return $this->redirectToRoute('cle_show', array('id' => $cle->getId()));
     }
@@ -76,7 +87,18 @@ class CleController extends Controller
     if ($editForm->isSubmitted() && $editForm->isValid()) {
       $datetime = new DateTime();
       $cle->setUpdated($datetime);
-      $this->getDoctrine()->getManager()->flush();
+
+      try{
+
+        $this->getDoctrine()->getManager()->flush();
+
+      }catch (\Doctrine\DBAL\DBALException $e){
+        return $this->render('error.html.twig', [
+          "title" => "Une erreur est survenue lors de la suppression de l'entité",
+          "message" => $e->getMessage(),
+            "errorcode" => $e->getErrorCode()
+        ]);
+      }
 
       return $this->redirectToRoute('cle_show', array('id' => $cle->getId()));
     }
@@ -110,7 +132,8 @@ class CleController extends Controller
       }catch (\Doctrine\DBAL\DBALException $e){
         return $this->render('error.html.twig', [
           "title" => "Une erreur est survenue lors de la suppression de l'entité",
-          "message" => $e->getMessage()
+          "message" => $e->getMessage(),
+            "errorcode" => $e->getErrorCode()
         ]);
       }
     }

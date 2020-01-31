@@ -45,7 +45,21 @@ class TypeUserController extends Controller
     if ($form->isSubmitted() && $form->isValid()) {
       $em = $this->getDoctrine()->getManager();
       $em->persist($typeuser);
-      $em->flush();
+
+
+      try{
+
+        $em->flush();
+
+
+      }catch (\Doctrine\DBAL\DBALException $e){
+        return $this->render('error.html.twig', [
+          "title" => "Une erreur est survenue lors de la suppression de l'entité",
+          "message" => $e->getMessage(),
+          "errorcode" => $e->getErrorCode()
+        ]);
+
+
 
       return $this->redirectToRoute('typeuser_show', array('id' => $typeuser->getId()));
     }
@@ -53,7 +67,7 @@ class TypeUserController extends Controller
     return $this->render('typeuser/new.html.twig', array('form' => $form->createView(),));
   }
 
-
+}
   //Edition d'un type
 
 
@@ -65,7 +79,17 @@ class TypeUserController extends Controller
     $editForm = $this->createForm('BackBundle\Form\TypeUserType', $typeuser)->handleRequest($request);
 
     if ($editForm->isSubmitted() && $editForm->isValid()) {
-      $this->getDoctrine()->getManager()->flush();
+
+      try{
+
+        $this->getDoctrine()->getManager()->flush();
+      }catch (\Doctrine\DBAL\DBALException $e){
+        return $this->render('error.html.twig', [
+          "title" => "Une erreur est survenue lors de la suppression de l'entité",
+          "message" => $e->getMessage(),
+          "errorcode" => $e->getErrorCode()
+        ]);
+
 
       return $this->redirectToRoute('typeuser_show', array('id' => $typeuser->getId()));
     }
@@ -77,7 +101,7 @@ class TypeUserController extends Controller
     ));
   }
 
-
+}
   //Suppression d'un type
 
 
@@ -96,7 +120,8 @@ class TypeUserController extends Controller
       }catch (\Doctrine\DBAL\DBALException $e){
         return $this->render('error.html.twig', [
           "title" => "Une erreur est survenue lors de la suppression de l'entité",
-          "message" => $e->getMessage()
+          "message" => $e->getMessage(),
+          "errorcode" => $e->getErrorCode()
         ]);
       }
     }

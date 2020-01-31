@@ -11,9 +11,12 @@
  <td>Etat</td>
  </tr>
  <tr *ngFor="let cles of valueRetour">
- <td>{{ cles.numCle }}</td>
- <td>{{ cles.montantInitial }}</td>
- <td>{{ cles.causeArret}}</td>
+ <td >{{ cles.numCle }}</td>
+ <td>{{ cles.montantInitial }} €</td>
+ <div *ngIf="cles.etat =='Active';then contenu"></div>
+<ng-template #contenu>{{ cles.etat}}</ng-template>
+<div *ngIf="cles.etat !='Active';then contenu" >{{ cles.etat}}</div>
+<ng-template #contenu>{{ cles.etat}}</ng-template>
 
  <td>
    <a routerLink='/detailcle/{{ cles.id }}' > <input id="boutton" type="button" value="Plus de détails"></a>

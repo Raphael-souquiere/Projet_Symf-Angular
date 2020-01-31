@@ -49,7 +49,21 @@ class EtatController extends Controller
     if ($form->isSubmitted() && $form->isValid()) {
       $em = $this->getDoctrine()->getManager();
       $em->persist($etat);
-      $em->flush();
+      try{
+
+
+        //Gestion des erreurs de creation
+
+
+        $em->flush();
+      }catch (\Doctrine\DBAL\DBALException $e){
+        return $this->render('error.html.twig', [
+          "title" => "Une erreur est survenue lors de la suppression de l'entité",
+          "message" => $e->getMessage(),
+            "errorcode" => $e->getErrorCode()
+        ]);
+      }
+
 
       return $this->redirectToRoute('etat_show', array('id' => $etat->getId()));
     }
@@ -69,7 +83,22 @@ class EtatController extends Controller
     $editForm = $this->createForm('BackBundle\Form\EtatType', $etat)->handleRequest($request);
 
     if ($editForm->isSubmitted() && $editForm->isValid()) {
-      $this->getDoctrine()->getManager()->flush();
+
+      try{
+
+
+        //Gestion des erreurs de modification
+
+
+        $this->getDoctrine()->getManager()->flush();
+      }catch (\Doctrine\DBAL\DBALException $e){
+        return $this->render('error.html.twig', [
+          "title" => "Une erreur est survenue lors de la suppression de l'entité",
+          "message" => $e->getMessage(),
+            "errorcode" => $e->getErrorCode()
+        ]);
+      }
+
 
       return $this->redirectToRoute('etat_show', array('id' => $etat->getId()));
     }
@@ -104,7 +133,8 @@ class EtatController extends Controller
       }catch (\Doctrine\DBAL\DBALException $e){
         return $this->render('error.html.twig', [
           "title" => "Une erreur est survenue lors de la suppression de l'entité",
-          "message" => $e->getMessage()
+          "message" => $e->getMessage(),
+            "errorcode" => $e->getErrorCode()
         ]);
       }
     }

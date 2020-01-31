@@ -57,7 +57,19 @@ class UserController extends Controller
       $user->setUpdated($datetime);
       $em = $this->getDoctrine()->getManager();
       $em->persist($user);
-      $em->flush();
+
+
+      try{
+
+        $em->flush();
+      }catch (\Doctrine\DBAL\DBALException $e){
+        return $this->render('error.html.twig', [
+          "title" => "Une erreur est survenue lors de la creation de l'entité",
+          "message" => $e->getMessage(),
+            "errorcode" => $e->getErrorCode()
+        ]);
+      }
+
 
       return $this->redirectToRoute('user_show', array('id' => $user->getId()));
     }
@@ -79,7 +91,21 @@ class UserController extends Controller
     if ($editForm->isSubmitted() && $editForm->isValid()) {
       $datetime = new DateTime();
       $user->setUpdated($datetime);
-      $this->getDoctrine()->getManager()->flush();
+
+
+      try{
+
+
+        $this->getDoctrine()->getManager()->flush();
+      }catch (\Doctrine\DBAL\DBALException $e){
+        return $this->render('error.html.twig', [
+          "title" => "Une erreur est survenue lors de la modification de l'entité",
+          "message" => $e->getMessage(),
+          "errorcode" => $e->getErrorCode()
+        ]);
+      }
+
+
 
       return $this->redirectToRoute('user_show', array('id' => $user->getId()));
     }
@@ -110,7 +136,8 @@ class UserController extends Controller
       }catch (\Doctrine\DBAL\DBALException $e){
         return $this->render('error.html.twig', [
           "title" => "Une erreur est survenue lors de la suppression de l'entité",
-          "message" => $e->getMessage()
+          "message" => $e->getMessage(),
+          "errorcode" => $e->getErrorCode()
         ]);
       }
     }

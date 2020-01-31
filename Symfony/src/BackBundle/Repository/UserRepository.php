@@ -12,13 +12,27 @@ class UserRepository extends EntityRepository
             ->createQuery(
                 'SELECT p.id,p.nom,p.prenom,p.actif,t.typeUser,s.site FROM BackBundle:User p
                   INNER JOIN BackBundle:TypeUser t WHERE p.idTypeUser = t.id
-                  INNER JOIN BackBundle:Affecte a WHERE a.idUser = p.id
-                  INNER JOIN BackBundle:Cle c WHERE a.idCle = c.id
                   INNER JOIN BackBundle:Site s
-                  WHERE p.idSite = s.id'
+                  WHERE p.idSite = s.id ORDER BY p.nom'
             )
             ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
     }
+
+    public function findAllOrderedByNameFront()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT p.id,p.nom,p.prenom,p.actif,t.typeUser,s.site FROM BackBundle:User p
+                  INNER JOIN BackBundle:TypeUser t WITH p.idTypeUser = t.id
+                  INNER JOIN BackBundle:Site s WITH p.idSite = s.id
+                  INNER JOIN BackBundle:Affecte a WHERE a.idUser = p.id
+                  INNER JOIN BackBundle:Cle c WHERE a.idCle = c.id
+                  WHERE a.idUser = p.id ORDER BY p.nom'
+            )
+            ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
+    }
+
+
     public function findOne($id)
     {
       {
@@ -64,14 +78,12 @@ class UserRepository extends EntityRepository
     public function findUserByCle($id)
     {
         return $this->getEntityManager()
-            ->createQuery('SELECT p.id,c.id,a.id,p.nom,p.prenom,p.actif,c.numCle,c.dateCreation,c.dateArret,e.causeArret
-              ,a.dateAffectation , a.dateSuppression,s.site,t.typeUser,a.created,a.updated
+            ->createQuery('SELECT p.id,c.id,a.id,p.nom,p.prenom,p.actif,c.numCle,c.dateCreation,c.dateArret,a.dateAffectation , a.dateSuppression,s.site,t.typeUser,a.created,a.updated
             FROM BackBundle:User p
             INNER JOIN BackBundle:Affecte a WHERE a.idUser = p.id
             INNER JOIN BackBundle:Cle c WHERE a.idCle = c.id  AND c.id = :id
-            INNER JOIN BackBundle:Etat e WHERE c.idEtat = e.id
             INNER JOIN BackBundle:TypeUser t WHERE p.idTypeUser = t.id
-            INNER JOIN BackBundle:Site s WHERE p.idSite = s.id')
+            INNER JOIN BackBundle:Site s WHERE p.idSite = s.id ORDER BY a.dateAffectation')
               ->setParameter("id", $id)
             ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
     }

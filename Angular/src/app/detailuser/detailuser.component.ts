@@ -13,28 +13,28 @@ import { ActivatedRoute } from '@angular/router';
 export class DetailuserComponent implements OnInit {
 
 
-public id;
+  public id;
+  
 
+  constructor(private http: HttpClient, private route: ActivatedRoute){}
+  valueRetour: any;
+  //methode appelée à chaque appel du composant
+  ngAfterViewInit(){
 
-constructor(private http: HttpClient, private route: ActivatedRoute){}
- valueRetour: any;
- //methode appelée à chaque appel du composant
- ngAfterViewInit(){
+    this.doGET();
+  }
 
-   this.doGET();
- }
+  // methode réalisant l'appel au web service et insérant la réponse
+  // dans une variable définie avant
+  doGET() {
+    let id = this.route.snapshot.paramMap.get('id');
+    console.log("GET");
+    let url = 'http://localhost:8000/api/detailuser/' + id;
+    //this.http.get(url).subscribe(res => console.log(res.json()));
+    this.http.get<any[]>(url).subscribe((response) => {this.valueRetour = response;},
+    (error) => {console.log('Erreur ! : ' + error);});
 
- // methode réalisant l'appel au web service et insérant la réponse
- // dans une variable définie avant
- doGET() {
-   let id = this.route.snapshot.paramMap.get('id');
-   console.log("GET");
-   let url = 'http://localhost:8000/api/detailuser/' + id;
-   //this.http.get(url).subscribe(res => console.log(res.json()));
-   this.http.get<any[]>(url).subscribe((response) => {this.valueRetour = response;},
-   (error) => {console.log('Erreur ! : ' + error);});
-
- }
+  }
 
   ngOnInit() {
   }
