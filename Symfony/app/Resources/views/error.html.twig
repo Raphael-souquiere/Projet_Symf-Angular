@@ -8,6 +8,8 @@
   <p>Erreur {{errorcode}} : Veuiller renseigner tous les champs</p>
   {% elseif errorcode == 1048%}
     <p>Erreur {{errorcode}} : Veuiller renseigner tous les champs</p>
+    {% elseif errorcode == 1451 %}
+      <p>Erreur {{errorcode}} : Il reste des entités associé a celle ci</p>
   {% endif %}
 </tbody>
 <br>

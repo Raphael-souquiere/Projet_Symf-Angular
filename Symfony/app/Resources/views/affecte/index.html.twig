@@ -14,8 +14,8 @@
         <tbody>
         {% for affecte in affectes %}
             <tr>
-                <td>{% if affecte.dateAffectation %}{{ affecte.dateAffectation|date('Y-m-d') }}{% endif %}</td>
-                <td>{% if affecte.dateSuppression %}{{ affecte.dateSuppression|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if affecte.dateAffectation %}{{ affecte.dateAffectation|date('d/m/Y') }}{% endif %}</td>
+                <td>{% if affecte.dateSuppression %}{{ affecte.dateSuppression|date('d/m/Y') }}{% endif %}</td>
                 <td>{{affecte.numCle}}</td>
                 <td>{{affecte.nom}}  {{affecte.prenom}}</td>
                 <td>
