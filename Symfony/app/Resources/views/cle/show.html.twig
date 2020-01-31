@@ -42,7 +42,12 @@
             </tr>
             <tr>
                 <th>Etat</th>
-                <td>{{ cle.causeArret }}</td>
+                {% if cle.etat == 'Active' %}
+                    <td style="background-color:green;">{{ cle.etat }}</td>
+                {% else %}
+                    <td style="background-color:red;">{{ cle.etat }}</td>
+                {% endif %}
+                <td>
             </tr>
         </tbody>
     </table>

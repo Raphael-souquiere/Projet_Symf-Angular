@@ -22,7 +22,7 @@ class DefaultController extends Controller
     {
       $cles = $this->getDoctrine()
           ->getRepository(Cle::class)
-          ->findAllOrderedByName();
+          ->findAllCle();
           $response = new Response();
           $response->setContent(json_encode($cles));
           $response->headers->set('Content-Type', 'application/json');
@@ -39,8 +39,7 @@ class DefaultController extends Controller
           ->findOne($id);
 
           $response = new Response();
-          $response->setContent(json_encode($cle));
-          //$response->setContent(json_encode($cle));
+          $response->setContent(json_encode($cle));;
           $response->headers->set('Content-Type', 'application/json');
           $response->headers->set('Access-Control-Allow-Origin', '*');
           return $response;
@@ -58,7 +57,6 @@ class DefaultController extends Controller
 
           $response = new Response();
           $response->setContent(json_encode($users));
-          //$response->setContent(json_encode($cle));
           $response->headers->set('Content-Type', 'application/json');
           $response->headers->set('Access-Control-Allow-Origin', '*');
           return $response;
@@ -73,7 +71,6 @@ class DefaultController extends Controller
           ->getRepository(User::class)
           ->findAllOrderedByName();
           $response = new Response();
-
             $response->setContent(json_encode($users));
             $response->headers->set('Content-Type', 'application/json');
             $response->headers->set('Access-Control-Allow-Origin', '*');
@@ -88,7 +85,6 @@ class DefaultController extends Controller
 
 
           $response = new Response();
-          //$response->setContent(json_encode(array("user" => $user , "affectes" => $affectes)));
           $response->setContent(json_encode($user));
           $response->headers->set('Content-Type', 'application/json');
           $response->headers->set('Access-Control-Allow-Origin', '*');
@@ -104,7 +100,6 @@ class DefaultController extends Controller
 
           $response = new Response();
           $response->setContent(json_encode($cles));
-          //$response->setContent(json_encode($cle));
           $response->headers->set('Content-Type', 'application/json');
           $response->headers->set('Access-Control-Allow-Origin', '*');
           return $response;

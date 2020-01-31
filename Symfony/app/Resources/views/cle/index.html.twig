@@ -12,7 +12,7 @@
 
                 <th>Numéro de clé</th>
                 <th>Montant Initial</th>
-                <th>Cause Arrèt</th>
+                <th>Etat</th>
 
             </tr>
         </thead>
@@ -21,9 +21,11 @@
             <tr>
                 <td>{{ cle.numCle }}</td>
                 <td>{{ cle.montantInitial }}</td>
-
-                <td>{{ cle.causeArret }}</td>
-
+                {% if cle.etat == 'Active' %}
+                    <td style="background-color:green;">{{ cle.etat }}</td>
+                {% else %}
+                    <td style="background-color:red;">{{ cle.etat }}</td>
+                {% endif %}
                 <td>
                     <ul>
                         <a href="{{ path('cle_show', { 'id': cle.id }) }}" > <input class="boutton_1" id="margin" type="button" value="Plus de détails"></a>

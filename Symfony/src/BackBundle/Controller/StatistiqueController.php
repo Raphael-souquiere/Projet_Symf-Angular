@@ -17,40 +17,47 @@ class StatistiqueController extends Controller
 {
 
 
-  //Liste de tout les utilisateur
-
 
   public function statAction()
   {
-      $em = $this->getDoctrine()->getManager();
-        $nbuseractif = $em->getRepository(User::class)->findUserActif();
-        $nbuserinactif = $em->getRepository(User::class)->findUserInactif();
-        $nbuser = $em->getRepository(User::class)->findUserTotal();
 
-        $nbcleactif = $em->getRepository(Cle::class)->findCleActif();
-        $nbcleinactif = $em->getRepository(Cle::class)->findCleInactif();
-        $nbcle = $em->getRepository(Cle::class)->findCleTotal();
+    $em = $this->getDoctrine()->getManager();
 
-        $nbclebysites = $em->getRepository(Cle::class)->findCleBySite();
-        $nbclebytypes = $em->getRepository(Cle::class)->findCleByType();
+    //Statistique d'activité des utilisateurs
 
-        $clemensuels = $em->getRepository(Cle::class)->evolutionmensuelcle();
-        $usermensuels = $em->getRepository(User::class)->evolutionmensueluser();
+    $nbuseractif = $em->getRepository(User::class)->findUserActif();
+    $nbuserinactif = $em->getRepository(User::class)->findUserInactif();
+    $nbuser = $em->getRepository(User::class)->findUserTotal();
 
-        return $this->render('stat.html.twig', array(
-            'nbuseractif' => $nbuseractif,
-            'nbuserinactif' => $nbuserinactif,
-            'nbuser' => $nbuser,
-            'nbcleactif' => $nbcleactif,
-            'nbcleinactif' => $nbcleinactif,
-            'nbcle' => $nbcle,
-            'nbclebytypes' => $nbclebytypes,
-            'nbclebysites' => $nbclebysites,
-            'clemensuels' => $clemensuels,
-            'usermensuels' => $usermensuels,
-        ));
+    //statistique d'état des clés
+
+    $nbcleactif = $em->getRepository(Cle::class)->findCleActif();
+    $nbcleinactif = $em->getRepository(Cle::class)->findCleInactif();
+    $nbcle = $em->getRepository(Cle::class)->findCleTotal();
+
+    //statistique du nombre de clé par site et par type
+
+    $nbclebysites = $em->getRepository(Cle::class)->findCleBySite();
+    $nbclebytypes = $em->getRepository(Cle::class)->findCleByType();
+
+    //Evolution mensuel du nombre d'utilisateur et de clé crée
+
+    $clemensuels = $em->getRepository(Cle::class)->evolutionmensuelcle();
+    $usermensuels = $em->getRepository(User::class)->evolutionmensueluser();
+
+
+    return $this->render('stat.html.twig', array(
+      'nbuseractif' => $nbuseractif,
+      'nbuserinactif' => $nbuserinactif,
+      'nbuser' => $nbuser,
+      'nbcleactif' => $nbcleactif,
+      'nbcleinactif' => $nbcleinactif,
+      'nbcle' => $nbcle,
+      'nbclebytypes' => $nbclebytypes,
+      'nbclebysites' => $nbclebysites,
+      'clemensuels' => $clemensuels,
+      'usermensuels' => $usermensuels,
+    ));
   }
-
-  //detail d'un utilisateur
 
 }

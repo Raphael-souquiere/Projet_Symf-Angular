@@ -12,6 +12,8 @@ class UserRepository extends EntityRepository
             ->createQuery(
                 'SELECT p.id,p.nom,p.prenom,p.actif,t.typeUser,s.site FROM BackBundle:User p
                   INNER JOIN BackBundle:TypeUser t WHERE p.idTypeUser = t.id
+                  INNER JOIN BackBundle:Affecte a WHERE a.idUser = p.id
+                  INNER JOIN BackBundle:Cle c WHERE a.idCle = c.id
                   INNER JOIN BackBundle:Site s
                   WHERE p.idSite = s.id'
             )
