@@ -8,8 +8,8 @@
  </tr>
  <tr *ngFor="let js of valueRetour">
  <td>{{ js.numCle }}</td>
- <td>{{ js.dateCreation.date | date :'d/M/y H:m:s' }}</td>
- <td>{{ js.dateArret.date | date :'d/M/y H:m:s' }}</td>
+ <td>{{ js.dateCreation.date | date :'d/M/y H:m' }}</td>
+ <td>{{ js.dateArret.date | date :'d/M/y H:m' }}</td>
  <td>{{ js.montantInitial }} €</td>
  <td>{{ js.commentaire }}</td>
  <td>{{ js.created.date | date :'d/M/y H:m:s' }}</td>
