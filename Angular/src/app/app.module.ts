@@ -13,6 +13,7 @@ import { DetailcleComponent } from './detailcle/detailcle.component';
 import { DetailuserComponent } from './detailuser/detailuser.component';
 import { DetailcleusersComponent } from './detailcleusers/detailcleusers.component';
 import { DetailuserclesComponent } from './detailusercles/detailusercles.component';
+import { FormSearchComponent } from './form-search/form-search.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { DetailuserclesComponent } from './detailusercles/detailusercles.compone
     DetailcleComponent,
     DetailuserComponent,
     DetailcleusersComponent,
-    DetailuserclesComponent
+    DetailuserclesComponent,
+    FormSearchComponent
   ],
   imports: [
     BrowserModule,

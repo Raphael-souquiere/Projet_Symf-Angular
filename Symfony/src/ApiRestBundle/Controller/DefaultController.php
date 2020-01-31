@@ -10,6 +10,7 @@ use BackBundle\Entity\User;
 use BackBundle\Entity\Cle;
 use BackBundle\Entity\Affecte;
 
+
 class DefaultController extends Controller
 {
     public function indexAction()
@@ -89,7 +90,7 @@ class DefaultController extends Controller
           $response->headers->set('Content-Type', 'application/json');
           $response->headers->set('Access-Control-Allow-Origin', '*');
           return $response;
-    }
+    } 
     public function detailuserclesAction($id)
     {
 
@@ -97,11 +98,12 @@ class DefaultController extends Controller
           ->getRepository(Cle::class)
           ->findCleByUser($id);
 
-
           $response = new Response();
           $response->setContent(json_encode($cles));
           $response->headers->set('Content-Type', 'application/json');
           $response->headers->set('Access-Control-Allow-Origin', '*');
           return $response;
     }
+
+    
 }

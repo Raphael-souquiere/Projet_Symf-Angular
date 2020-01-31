@@ -27,3 +27,6 @@ api_rest_detailusercles:
     defaults: { _controller: ApiRestBundle:Default:detailusercles }
     requirements:
       id: '\d+'
+api_rest_search:    
+    path:     /searchuser    
+    defaults: { _controller: ApiRestBundle:Default:searchuser }

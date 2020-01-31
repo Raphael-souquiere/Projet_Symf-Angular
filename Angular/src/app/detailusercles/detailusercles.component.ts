@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 @Injectable()
+
 export class DetailuserclesComponent implements OnInit {
 
 constructor(private http: HttpClient ,  private route: ActivatedRoute){}

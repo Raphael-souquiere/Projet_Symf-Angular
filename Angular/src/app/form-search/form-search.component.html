@@ -1,0 +1,20 @@
+<h2>Formulaire Internaute</h2>
+<div id="monform2">  
+    <form (ngSubmit)="register()" [formGroup]="userForm" method="GET">       
+        <div>      
+            <label>Nom</label>
+            <input formControlName="nom" >    
+        </div>    
+        <div>      
+            <label>Site</label>
+            <input formControlName="site" >    
+        </div>    
+        <div>      
+            <label>TypeUser</label>    
+            <input formControlName="typeUser" >
+        </div>               
+        <button type="submit" [disabled]="userForm.invalid">Sauvegarder</button>  
+    </form>
+    <pre>{{ userForm.value | json }}</pre>
+</div>
+<div> {{ afficheText }}</div>
