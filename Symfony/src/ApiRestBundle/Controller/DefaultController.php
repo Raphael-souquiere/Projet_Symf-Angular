@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use BackBundle\Entity\User;
 use BackBundle\Entity\Cle;
 use BackBundle\Entity\Affecte;
+use BackBundle\Entity\Site;
 
 
 class DefaultController extends Controller
@@ -105,5 +106,20 @@ class DefaultController extends Controller
           return $response;
     }
 
-    
+    public function searchuserAction(Request $request)
+    {
+      $nom = $request->query->get('nom');
+      $site = $request->query->get('site');
+      $typeUser = $request->query->get('typeUser');
+
+      $search = $this->getDoctrine()
+      ->getRepository(User::class)
+      ->findSearchOrderedByName($nom,$site,$typeUser);
+
+      $response = new Response();
+      $response->setContent(json_encode($search));
+      $response->headers->set('Content-Type', 'application/json');
+      $response->headers->set('Access-Control-Allow-Origin', '*');
+      return $response;
+    }
 }

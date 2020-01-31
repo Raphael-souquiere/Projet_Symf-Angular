@@ -10,17 +10,21 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class FormSearchComponent implements OnInit {
-
+  valueRetour: any;
   userForm: FormGroup;
   afficheText: string;
 
   constructor(private fb: FormBuilder,private http: HttpClient) {  }
 
+  ngAfterViewInit(){
+    this.doGET();
+  }
+ 
   ngOnInit() {
     this.userForm = this.fb.group({
-      nom : ['oui'],
-      site : ['non'],
-      typeUser : ['ISEN'],
+      nom : [''],
+      site : [''],
+      typeUser : [''],
     });
   }
 
@@ -30,8 +34,16 @@ export class FormSearchComponent implements OnInit {
     formData.append("nom", this.userForm.value['nom']);
     formData.append("site", this.userForm.value['site']);
     formData.append("typeUser", this.userForm.value['typeUser']);
-  //  this.http.post('127.0.0.1:8000/api/searchuser?nom=',this.userForm.value['nom'] + 'site=', this.userForm.value['site']+ 'typeUser=',this.userForm.value['typeUser'], formData).subscribe(
-    //  (response) => console.log(response),
-  //    (error) => console.log(error))
+    this.http.get('http://localhost:8000/api/searchuser?nom=' + this.userForm.value['nom'] + '&site=' + this.userForm.value['site'] + '&typeUser=' + this.userForm.value['typeUser'] ,formData).subscribe((response) => {this.valueRetour = response;},
+      (response) => console.log(response))
+  }
+
+  doGET() {
+
+    console.log("GET");
+    let url = `http://localhost:8000/api/listeuser`;
+    //this.http.get(url).subscribe(res => console.log(res.json()));
+    this.http.get<any[]>(url).subscribe((response) => {this.valueRetour = response;},
+    (error) => {console.log('Erreur ! : ' + error);});
   }
 }

@@ -129,4 +129,35 @@ class UserRepository extends EntityRepository
             ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
     }
 
+
+
+
+
+public function findSearchOrderedByName($nom,$site,$typeUser)
+    {
+        $em = $this->createQueryBuilder("u");
+
+        $em->select("u.id,u.nom,u.prenom,u.actif,typeUser.typeUser,site.site");
+        $em->innerJoin("u.idTypeUser", "typeUser");
+        $em->innerJoin("u.idSite", "site");
+
+        $em->where("true = true");
+
+        if($nom)
+            $em->andWhere("u.nom = :nom");
+        if($site)
+            $em->andWhere("site.site = :site");
+        if($typeUser)
+            $em->andWhere("typeUser.typeUser = :typeUser");
+
+
+		if($nom)
+            $em->setParameter("nom", $nom);
+        if($site )
+            $em->setParameter("site",$site);
+        if($typeUser )
+            $em->setParameter("typeUser", $typeUser);
+
+        return $em->getQuery()->getArrayResult();
+    }
 }
