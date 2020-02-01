@@ -38,13 +38,16 @@ class TypeUserController extends Controller
 
   public function newAction(Request $request, TypeUser $typeuser = null)
   {
-      $typeuser = new TypeUser();
-      $form = $this->createForm('BackBundle\Form\TypeUserType', $typeuser);
-      $form->handleRequest($request);
+    $typeuser = new TypeUser();
+    $form = $this->createForm('BackBundle\Form\TypeUserType', $typeuser);
+    $form->handleRequest($request);
 
-      if ($form->isSubmitted() && $form->isValid()) {
-          $em = $this->getDoctrine()->getManager();
-          $em->persist($typeuser);
+    if ($form->isSubmitted() && $form->isValid()) {
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($typeuser);
+
+      //Gestion des erreur
+
       try{
         $em->flush();
       }catch (\Doctrine\DBAL\DBALException $e){
@@ -57,41 +60,44 @@ class TypeUserController extends Controller
       return $this->redirectToRoute('typeuser_show', array('id' => $typeuser->getId()));
     }
 
-      return $this->render('typeuser/new.html.twig', array('form' => $form->createView(),));
+    return $this->render('typeuser/new.html.twig', array('form' => $form->createView(),));
   }
 
 
-  //Edition d'un utilisateur
+  //Edition d'un type utilisateur
 
 
   public function editAction(Request $request, TypeUser $typeuser)
 
-    {
-        $deleteForm = $this->createFormBuilder()->setAction($this->generateUrl('typeuser_delete', array('id' => $typeuser->getId())))->setMethod('DELETE')->getForm();
+  {
+    $deleteForm = $this->createFormBuilder()->setAction($this->generateUrl('typeuser_delete', array('id' => $typeuser->getId())))->setMethod('DELETE')->getForm();
 
-        $editForm = $this->createForm('BackBundle\Form\TypeUserType', $typeuser)->handleRequest($request);
+    $editForm = $this->createForm('BackBundle\Form\TypeUserType', $typeuser)->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+    if ($editForm->isSubmitted() && $editForm->isValid()) {
+      $em = $this->getDoctrine()->getManager();
 
-            try{
-              $em->flush();
-            }catch (\Doctrine\DBAL\DBALException $e){
-              return $this->render('error.html.twig', [
-                "title" => "Une erreur est survenue lors de la suppression de l'entité",
-                "message" => $e->getMessage(),
-                "errorcode" => $e->getErrorCode()
-              ]);
-            }
-            return $this->redirectToRoute('typeuser_show', array('id' => $typeuser->getId()));
-        }
+        //Gestion des erreur
 
-        return $this->render('typeuser/edit.html.twig', array(
-            'typeuser' => $typeuser,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+      try{
+        $em->flush();
+      }catch (\Doctrine\DBAL\DBALException $e){
+        return $this->render('error.html.twig', [
+          "title" => "Une erreur est survenue lors de la suppression de l'entité",
+          "message" => $e->getMessage(),
+          "errorcode" => $e->getErrorCode()
+        ]);
+      }
+      return $this->redirectToRoute('typeuser_show', array('id' => $typeuser->getId()));
     }
+
+    return $this->render('typeuser/edit.html.twig', array(
+      'typeuser' => $typeuser,
+      'edit_form' => $editForm->createView(),
+      'delete_form' => $deleteForm->createView(),
+    ));
+  }
+
   //Suppression d'un type
 
 
@@ -104,6 +110,9 @@ class TypeUserController extends Controller
 
       $em = $this->getDoctrine()->getManager();
       $em->remove($typeuser);
+
+        //Gestion des erreur
+
       try{
 
         $em->flush();

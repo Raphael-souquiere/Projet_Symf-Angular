@@ -60,7 +60,7 @@ class EtatController extends Controller
         return $this->render('error.html.twig', [
           "title" => "Une erreur est survenue lors de la suppression de l'entité",
           "message" => $e->getMessage(),
-            "errorcode" => $e->getErrorCode()
+          "errorcode" => $e->getErrorCode()
         ]);
       }
 
@@ -95,7 +95,7 @@ class EtatController extends Controller
         return $this->render('error.html.twig', [
           "title" => "Une erreur est survenue lors de la suppression de l'entité",
           "message" => $e->getMessage(),
-            "errorcode" => $e->getErrorCode()
+          "errorcode" => $e->getErrorCode()
         ]);
       }
 
@@ -134,7 +134,7 @@ class EtatController extends Controller
         return $this->render('error.html.twig', [
           "title" => "Une erreur est survenue lors de la suppression de l'entité",
           "message" => $e->getMessage(),
-            "errorcode" => $e->getErrorCode()
+          "errorcode" => $e->getErrorCode()
         ]);
       }
     }

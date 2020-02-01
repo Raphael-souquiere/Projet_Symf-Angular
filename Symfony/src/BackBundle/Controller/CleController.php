@@ -55,6 +55,7 @@ class CleController extends Controller
       $em = $this->getDoctrine()->getManager();
       $em->persist($cle);
 
+      //Gestion des erreur
 
       try{
 
@@ -63,7 +64,7 @@ class CleController extends Controller
         return $this->render('error.html.twig', [
           "title" => "Une erreur est survenue lors de la suppression de l'entité",
           "message" => $e->getMessage(),
-            "errorcode" => $e->getErrorCode()
+          "errorcode" => $e->getErrorCode()
         ]);
       }
 
@@ -88,6 +89,8 @@ class CleController extends Controller
       $datetime = new DateTime();
       $cle->setUpdated($datetime);
 
+      //Gestion des erreur
+
       try{
 
         $this->getDoctrine()->getManager()->flush();
@@ -96,7 +99,7 @@ class CleController extends Controller
         return $this->render('error.html.twig', [
           "title" => "Une erreur est survenue lors de la suppression de l'entité",
           "message" => $e->getMessage(),
-            "errorcode" => $e->getErrorCode()
+          "errorcode" => $e->getErrorCode()
         ]);
       }
 
@@ -133,7 +136,7 @@ class CleController extends Controller
         return $this->render('error.html.twig', [
           "title" => "Une erreur est survenue lors de la suppression de l'entité",
           "message" => $e->getMessage(),
-            "errorcode" => $e->getErrorCode()
+          "errorcode" => $e->getErrorCode()
         ]);
       }
     }

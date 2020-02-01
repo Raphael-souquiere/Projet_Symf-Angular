@@ -47,6 +47,7 @@ class SiteController extends Controller
       $em = $this->getDoctrine()->getManager();
       $em->persist($site);
 
+      //Gestion des erreur
 
       try{
 
@@ -55,7 +56,7 @@ class SiteController extends Controller
         return $this->render('error.html.twig', [
           "title" => "Une erreur est survenue lors de la suppression de l'entité",
           "message" => $e->getMessage(),
-            "errorcode" => $e->getErrorCode()
+          "errorcode" => $e->getErrorCode()
         ]);
       }
 
@@ -78,6 +79,8 @@ class SiteController extends Controller
 
     if ($editForm->isSubmitted() && $editForm->isValid()) {
 
+      //Gestion des erreur
+
       try{
 
         $this->getDoctrine()->getManager()->flush();
@@ -86,7 +89,7 @@ class SiteController extends Controller
         return $this->render('error.html.twig', [
           "title" => "Une erreur est survenue lors de la suppression de l'entité",
           "message" => $e->getMessage(),
-            "errorcode" => $e->getErrorCode()
+          "errorcode" => $e->getErrorCode()
         ]);
       }
 
@@ -114,6 +117,9 @@ class SiteController extends Controller
 
       $em = $this->getDoctrine()->getManager();
       $em->remove($site);
+
+      //Gestion des erreur
+
       try{
 
         $em->flush();
@@ -121,7 +127,7 @@ class SiteController extends Controller
         return $this->render('error.html.twig', [
           "title" => "Une erreur est survenue lors de la suppression de l'entité",
           "message" => $e->getMessage(),
-            "errorcode" => $e->getErrorCode()
+          "errorcode" => $e->getErrorCode()
         ]);
       }
     }

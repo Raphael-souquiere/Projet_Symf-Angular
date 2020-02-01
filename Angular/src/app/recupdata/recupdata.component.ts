@@ -24,6 +24,7 @@ constructor(private http: HttpClient){}
  doGET() {
 
    console.log("GET");
+   //Recuperation du Json dans le back
    let url = `http://localhost:8000/api/listecle`;
    //this.http.get(url).subscribe(res => console.log(res.json()));
    this.http.get<any[]>(url).subscribe((response) => {this.valueRetour = response;},

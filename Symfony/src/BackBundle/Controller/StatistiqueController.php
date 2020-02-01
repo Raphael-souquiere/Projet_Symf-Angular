@@ -34,7 +34,7 @@ class StatistiqueController extends Controller
     $nbcleactif = $em->getRepository(Cle::class)->findCleActif();
     $nbcleinactif = $em->getRepository(Cle::class)->findCleInactif();
     $nbcle = $em->getRepository(Cle::class)->findCleTotal();
-
+    
     //statistique du nombre de clé par site et par type
 
     $nbclebysites = $em->getRepository(Cle::class)->findCleBySite();

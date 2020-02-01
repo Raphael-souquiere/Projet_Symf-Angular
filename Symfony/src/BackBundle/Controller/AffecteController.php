@@ -62,6 +62,8 @@ class AffecteController extends Controller
       $em = $this->getDoctrine()->getManager();
       $em->persist($affecte);
 
+      //Gestion des erreurs
+
       try{
 
         $em->flush();
@@ -69,7 +71,7 @@ class AffecteController extends Controller
         return $this->render('error.html.twig', [
           "title" => "Une erreur est survenue lors de la creation de l'entité",
           "message" => $e->getMessage(),
-            "errorcode" => $e->getErrorCode()
+          "errorcode" => $e->getErrorCode()
         ]);
       }
 
@@ -97,14 +99,16 @@ class AffecteController extends Controller
       $datetime = new DateTime();
       $affecte->setUpdated($datetime);
 
+        //Gestion des erreur
+
       try{
 
-            $this->getDoctrine()->getManager()->flush();
+        $this->getDoctrine()->getManager()->flush();
       }catch (\Doctrine\DBAL\DBALException $e){
         return $this->render('error.html.twig', [
           "title" => "Une erreur est survenue lors de la modification de l'entité",
           "message" => $e->getMessage(),
-            "errorcode" => $e->getErrorCode()
+          "errorcode" => $e->getErrorCode()
         ]);
       }
 
@@ -144,7 +148,7 @@ class AffecteController extends Controller
         return $this->render('error.html.twig', [
           "title" => "Une erreur est survenue lors de la suppression de l'entité",
           "message" => $e->getMessage(),
-            "errorcode" => $e->getErrorCode()
+          "errorcode" => $e->getErrorCode()
         ]);
       }
     }

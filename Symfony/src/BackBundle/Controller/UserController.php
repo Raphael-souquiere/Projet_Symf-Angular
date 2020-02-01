@@ -58,6 +58,7 @@ class UserController extends Controller
       $em = $this->getDoctrine()->getManager();
       $em->persist($user);
 
+        //Gestion des erreur
 
       try{
 
@@ -92,6 +93,7 @@ class UserController extends Controller
       $datetime = new DateTime();
       $user->setUpdated($datetime);
 
+        //Gestion des erreur
 
       try{
 
@@ -130,6 +132,9 @@ class UserController extends Controller
 
       $em = $this->getDoctrine()->getManager();
       $em->remove($user);
+
+        //Gestion des erreur
+
       try{
 
         $em->flush();
