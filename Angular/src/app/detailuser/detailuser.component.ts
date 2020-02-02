@@ -14,7 +14,7 @@ export class DetailuserComponent implements OnInit {
 
 
   public id;
-  
+
 
   constructor(private http: HttpClient, private route: ActivatedRoute){}
   valueRetour: any;
@@ -27,6 +27,7 @@ export class DetailuserComponent implements OnInit {
   // methode réalisant l'appel au web service et insérant la réponse
   // dans une variable définie avant
   doGET() {
+    //Recuperation de l'id dans l'URL
     let id = this.route.snapshot.paramMap.get('id');
     console.log("GET");
     let url = 'http://prjsymf.cir3-frm-smf-ang-35/api/detailuser/' + id;

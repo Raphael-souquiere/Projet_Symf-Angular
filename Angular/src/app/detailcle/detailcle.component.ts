@@ -27,6 +27,7 @@ constructor(private http: HttpClient, private route: ActivatedRoute){}
  // methode réalisant l'appel au web service et insérant la réponse
  // dans une variable définie avant
  doGET() {
+   //Recuperation de l'id dans l'URL
    let id = this.route.snapshot.paramMap.get('id');
    console.log("GET");
    let url = 'http://prjsymf.cir3-frm-smf-ang-35/api/detailcle/' + id;

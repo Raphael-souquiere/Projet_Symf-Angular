@@ -1,5 +1,13 @@
 <?php
 
+/**
+* Repository de l'entité Clé
+*
+* @author Aristide Pichereau & Raphael Souquiere
+* @version 1.0.0
+*
+*/
+
 namespace BackBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
@@ -9,6 +17,12 @@ use DoctrineExtensions\Query\Mysql\IfNull;
 
 class CleRepository extends EntityRepository
 {
+
+  /**
+  *récupère toute les clé
+  *
+  */
+
   public function findAllCle()
   {
     return $this->getEntityManager()
@@ -22,6 +36,12 @@ class CleRepository extends EntityRepository
       )
       ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
     }
+
+    /**
+    *récupère une clé
+    *
+    *@param $id id de la clé
+    */
 
 
     public function findOne($id)
@@ -37,6 +57,12 @@ class CleRepository extends EntityRepository
         ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
       }
 
+      /**
+      *Récupère une clé backoffice
+      *
+      *@param $id id de la clé
+      */
+
       public function findOneBack($id)
       {
         return $this->getEntityManager()
@@ -49,6 +75,12 @@ class CleRepository extends EntityRepository
           )->setParameter("id", $id)
           ->getOneOrNullResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
         }
+
+        /**
+        *Récupère toute les clé associer a un utilisateur
+        *
+        *@param $id id de l'utilisateur
+        */
 
         public function findCleByUser($id)
         {
@@ -67,8 +99,12 @@ class CleRepository extends EntityRepository
         }
 
 
-        //stat
+        //Requete pour la page de statistique
 
+        /**
+        *Récupère le nombre de clé active
+        *
+        */
 
         public function findCleActif()
         {
@@ -78,6 +114,11 @@ class CleRepository extends EntityRepository
             WHERE p.idEtat IS NULL')
             ->getSingleScalarResult();
           }
+
+          /**
+          *Récupère le nombre de clé inactive
+          *
+          */
 
           public function findCleInactif()
           {
@@ -89,6 +130,11 @@ class CleRepository extends EntityRepository
               ->getSingleScalarResult();
             }
 
+            /**
+            *Récupère le nombre total de clé
+            *
+            */
+
             public function findCleTotal()
             {
               return $this->getEntityManager()
@@ -97,8 +143,10 @@ class CleRepository extends EntityRepository
                 )->getSingleScalarResult();
               }
 
-
-
+              /**
+              *Recupère le nombre de clé par type d'utilisateur
+              *
+              */
 
               public function findCleByType()
               {
@@ -113,6 +161,11 @@ class CleRepository extends EntityRepository
                   ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
                 }
 
+                /**
+                *Recupère le nombre de clé par site
+                *
+                */
+
                 public function findCleBySite()
                 {
                   return $this->getEntityManager()
@@ -124,6 +177,11 @@ class CleRepository extends EntityRepository
                     GROUP BY s.site ')
                     ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
                   }
+
+                  /**
+                  *Récupère le nombre de clé par mois
+                  *
+                  */
 
                   public function evolutionmensuelcle()
                   {

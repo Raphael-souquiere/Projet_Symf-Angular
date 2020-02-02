@@ -1,5 +1,14 @@
 <?php
 
+/**
+* Fichier utiliser pour la gestion CRUD de la table Clé
+*
+*
+* @author Aristide Pichereau & Raphael Souquiere
+* @version 1.0.0
+*
+*/
+
 namespace BackBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -11,7 +20,11 @@ use \Datetime;
 class CleController extends Controller
 {
 
-  //affichage de toutes les clé
+  /**
+  * Affiche la liste des entités Clé
+  *
+  * @return
+  */
 
   public function showallAction()
   {
@@ -24,9 +37,13 @@ class CleController extends Controller
     ));
   }
 
-  //affichage d'une clé
-
-
+  /**
+  * Affiche une entités  Clé
+  *
+  *  @param $id est l'id de l'entité a afficher
+  *
+  * @return retourne la vue affichant le detail d'une Clé
+  */
 
   public function showAction($id)
   {
@@ -39,8 +56,12 @@ class CleController extends Controller
   }
 
 
-  //Creation d'une clé
-
+  /**
+  * Créer une entités Clé
+  *
+  *
+  * @return retourne la vue affichant le formulaire de création d'une Clé
+  */
 
   public function newAction(Request $request, Cle $cle = null)
   {
@@ -55,15 +76,16 @@ class CleController extends Controller
       $em = $this->getDoctrine()->getManager();
       $em->persist($cle);
 
+      //Gestion des erreur de création
 
       try{
 
         $em->flush();
       }catch (\Doctrine\DBAL\DBALException $e){
         return $this->render('error.html.twig', [
-          "title" => "Une erreur est survenue lors de la suppression de l'entité",
+          "title" => "Une erreur est survenue lors de la création de l'entité",
           "message" => $e->getMessage(),
-            "errorcode" => $e->getErrorCode()
+          "errorcode" => $e->getErrorCode()
         ]);
       }
 
@@ -74,8 +96,13 @@ class CleController extends Controller
   }
 
 
-  //Edition d'une clé'
-
+  /**
+  * Permet l'édition une entités Clé
+  *
+  *  @param $affecte est l'entité a éditer
+  *
+  * @return retourne la vue affichant la page d'édition d'une Clé
+  */
 
   public function editAction(Request $request, Cle $cle)
 
@@ -88,15 +115,17 @@ class CleController extends Controller
       $datetime = new DateTime();
       $cle->setUpdated($datetime);
 
+      //Gestion des erreur d'edition
+
       try{
 
         $this->getDoctrine()->getManager()->flush();
 
       }catch (\Doctrine\DBAL\DBALException $e){
         return $this->render('error.html.twig', [
-          "title" => "Une erreur est survenue lors de la suppression de l'entité",
+          "title" => "Une erreur est survenue lors de l' edition de l'entité",
           "message" => $e->getMessage(),
-            "errorcode" => $e->getErrorCode()
+          "errorcode" => $e->getErrorCode()
         ]);
       }
 
@@ -111,7 +140,13 @@ class CleController extends Controller
   }
 
 
-  //Suppression d'une clé
+  /**
+  * Permet la suppression une entités Clé
+  *
+  *  @param $affecte est l'entité a supprimer
+  *
+  * @return supprime l'entité et retourne la vue affichant toute les clé
+  */
 
 
   public function deleteAction(Request $request, Cle $cle)
@@ -133,7 +168,7 @@ class CleController extends Controller
         return $this->render('error.html.twig', [
           "title" => "Une erreur est survenue lors de la suppression de l'entité",
           "message" => $e->getMessage(),
-            "errorcode" => $e->getErrorCode()
+          "errorcode" => $e->getErrorCode()
         ]);
       }
     }

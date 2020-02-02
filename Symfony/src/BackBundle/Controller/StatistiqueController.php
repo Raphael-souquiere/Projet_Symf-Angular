@@ -1,5 +1,13 @@
 <?php
 
+/**
+* Fichier appelant les requètes de statistiques
+*
+* @author Aristide Pichereau & Raphael Souquiere
+* @version 1.0.0
+*
+*/
+
 namespace BackBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -16,6 +24,12 @@ class StatistiqueController extends Controller
 
 {
 
+  /**
+  * Envoie toute les statistique nécessaire a la page de statistique
+  *
+  *
+  * @return retourne la vue affichant les statistique ainsi qu'un tableau avec lme résultat de toute les requète sur la base de donnée
+  */
 
 
   public function statAction()

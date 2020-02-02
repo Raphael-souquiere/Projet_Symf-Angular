@@ -1,5 +1,14 @@
 <?php
 
+/**
+* Fichier utiliser pour la gestion CRUD de la table Affecte
+*
+*
+* @author Aristide Pichereau & Raphael Souquiere
+* @version 1.0.0
+*
+*/
+
 namespace BackBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -11,8 +20,11 @@ use \Datetime;
 class AffecteController extends Controller
 {
 
-  //affichage de toute les affectations
-
+  /**
+  * Affiche la liste des entités Affecte
+  *
+  * @return
+  */
 
   public function showallAction()
   {
@@ -24,9 +36,13 @@ class AffecteController extends Controller
     ));
   }
 
-
-  //affichage d'une affectation
-
+  /**
+  * Affiche une entités Affecte
+  *
+  *  @param $id est l'id de l'entité a afficher
+  *
+  * @return retourne la vue affichant le detail d'une affectation
+  */
 
   public function showAction( $id )
   {
@@ -40,7 +56,12 @@ class AffecteController extends Controller
   }
 
 
-  //Creation d'une affectation
+  /**
+  * Créer une entités Affecte
+  *
+  *
+  * @return retourne la vue affichant le formulaire de création d'une affectation
+  */
 
 
   public function newAction(Request $request, Affecte $affecte = null)
@@ -62,6 +83,8 @@ class AffecteController extends Controller
       $em = $this->getDoctrine()->getManager();
       $em->persist($affecte);
 
+      //Gestion des erreurs de création
+
       try{
 
         $em->flush();
@@ -69,7 +92,7 @@ class AffecteController extends Controller
         return $this->render('error.html.twig', [
           "title" => "Une erreur est survenue lors de la creation de l'entité",
           "message" => $e->getMessage(),
-            "errorcode" => $e->getErrorCode()
+          "errorcode" => $e->getErrorCode()
         ]);
       }
 
@@ -80,7 +103,14 @@ class AffecteController extends Controller
   }
 
 
-  //Edition d'une affectation
+  /**
+  * Permet l'édition une entités Affecte
+  *
+  *  @param $affecte est l'entité a éditer
+  *
+  * @return retourne la vue affichant la page d'édition d'une affectation
+  */
+
 
 
   public function editAction(Request $request, Affecte $affecte)
@@ -97,14 +127,16 @@ class AffecteController extends Controller
       $datetime = new DateTime();
       $affecte->setUpdated($datetime);
 
+      //Gestion des erreur d'édition
+
       try{
 
-            $this->getDoctrine()->getManager()->flush();
+        $this->getDoctrine()->getManager()->flush();
       }catch (\Doctrine\DBAL\DBALException $e){
         return $this->render('error.html.twig', [
           "title" => "Une erreur est survenue lors de la modification de l'entité",
           "message" => $e->getMessage(),
-            "errorcode" => $e->getErrorCode()
+          "errorcode" => $e->getErrorCode()
         ]);
       }
 
@@ -120,8 +152,14 @@ class AffecteController extends Controller
     ));
   }
 
-
-  //Suppression d'une affectation
+  
+  /**
+  * Permet la suppression une entités Affecte
+  *
+  *  @param $affecte est l'entité a supprimer
+  *
+  * @return supprime l'entité et retourne la vue affichant toute les affectations
+  */
 
 
   public function deleteAction(Request $request, Affecte $affecte)
@@ -144,7 +182,7 @@ class AffecteController extends Controller
         return $this->render('error.html.twig', [
           "title" => "Une erreur est survenue lors de la suppression de l'entité",
           "message" => $e->getMessage(),
-            "errorcode" => $e->getErrorCode()
+          "errorcode" => $e->getErrorCode()
         ]);
       }
     }

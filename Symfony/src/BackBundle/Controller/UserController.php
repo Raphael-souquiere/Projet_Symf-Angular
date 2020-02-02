@@ -1,5 +1,14 @@
 <?php
 
+/**
+* Fichier utiliser pour la gestion CRUD de la table User
+*
+*
+* @author Aristide Pichereau & Raphael Souquiere
+* @version 1.0.0
+*
+*/
+
 namespace BackBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -15,7 +24,12 @@ class UserController extends Controller
 {
 
 
-  //Liste de tout les utilisateur
+  /**
+  * Affiche la liste des entités User
+  *
+  * @return
+  */
+
 
 
   public function showallAction()
@@ -28,8 +42,13 @@ class UserController extends Controller
     ));
   }
 
-  //detail d'un utilisateur
-
+  /**
+  * Affiche une entités User
+  *
+  *  @param $id est l'id de l'entité a afficher
+  *
+  * @return retourne la vue affichant le detail d'une User
+  */
 
   public function showAction($id)
   {
@@ -41,9 +60,11 @@ class UserController extends Controller
     ));
   }
 
-
-  //creation d'un utilisateur
-
+  /**
+  * Créer une entités User
+  *
+  * @return retourne la vue affichant le formulaire de création d'une User
+  */
 
   public function newAction(Request $request, User $user = null)
   {
@@ -58,6 +79,7 @@ class UserController extends Controller
       $em = $this->getDoctrine()->getManager();
       $em->persist($user);
 
+        //Gestion des erreur de creation
 
       try{
 
@@ -77,9 +99,13 @@ class UserController extends Controller
     return $this->render('user/new.html.twig', array('form' => $form->createView(),));
   }
 
-
-  //Edition d'un utilisateur
-
+  /**
+  * Permet l'édition une entités User
+  *
+  *  @param $affecte est l'entité a éditer
+  *
+  * @return retourne la vue affichant la page d'édition d'une User
+  */
 
   public function editAction(Request $request, User $user)
 
@@ -92,6 +118,7 @@ class UserController extends Controller
       $datetime = new DateTime();
       $user->setUpdated($datetime);
 
+        //Gestion des erreur d'édition
 
       try{
 
@@ -118,7 +145,13 @@ class UserController extends Controller
   }
 
 
-  //Suppresion d'un utilisateur
+  /**
+  * Permet la suppression une entités User
+  *
+  *  @param $affecte est l'entité a supprimer
+  *
+  * @return supprime l'entité et retourne la vue affichant tout les Utilisateurs
+  */
 
 
   public function deleteAction(Request $request, User $user)
@@ -130,6 +163,9 @@ class UserController extends Controller
 
       $em = $this->getDoctrine()->getManager();
       $em->remove($user);
+
+        //Gestion des erreur de suppression
+
       try{
 
         $em->flush();
