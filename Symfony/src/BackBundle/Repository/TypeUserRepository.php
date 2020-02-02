@@ -1,5 +1,13 @@
 <?php
 
+/**
+* Repository de l'entité typeuser
+*
+* @author Aristide Pichereau & Raphael Souquiere
+* @version 1.0.0
+*
+*/
+
 namespace BackBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
@@ -7,7 +15,10 @@ use Doctrine\ORM\EntityRepository;
 class TypeUserRepository extends EntityRepository
 {
 
-  //récupère tous les type d'utilisateur
+  /**
+  *Récupère tous les typeusers
+  *
+  */
 
   public function findAllOrderedByName()
   {
@@ -18,7 +29,11 @@ class TypeUserRepository extends EntityRepository
       ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
     }
 
-    //Récupère un type d'utilisateur
+    /**
+    *récupère un typeuser
+    *
+    *@param $id id du typeuser
+    */
 
     public function findOne($id)
     {

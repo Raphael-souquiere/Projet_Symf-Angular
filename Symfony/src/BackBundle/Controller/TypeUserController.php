@@ -1,5 +1,14 @@
 <?php
 
+/**
+* Fichier utiliser pour la gestion CRUD de la table TypeUser
+*
+*
+* @author Aristide Pichereau & Raphael Souquiere
+* @version 1.0.0
+*
+*/
+
 namespace BackBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -10,7 +19,11 @@ use BackBundle\Entity\TypeUser;
 class TypeUserController extends Controller
 {
 
-  //affichage de tout les type d'utilisateur
+  /**
+  * Affiche la liste des entités Site
+  *
+  * @return
+  */
 
   public function showallAction()
   {
@@ -21,7 +34,13 @@ class TypeUserController extends Controller
     ));
   }
 
-  //affichage d'un type
+  /**
+  * Affiche une entités  TypeUser
+  *
+  *  @param $id est l'id de l'entité a afficher
+  *
+  * @return retourne la vue affichant le detail d'une TypeUser
+  */
 
   public function showAction($id)
   {
@@ -33,8 +52,12 @@ class TypeUserController extends Controller
     ));
   }
 
-  //création d'un type
-
+  /**
+  * Créer une entités TypeUser
+  *
+  *
+  * @return retourne la vue affichant le formulaire de création d'une TypeUser
+  */
 
   public function newAction(Request $request, TypeUser $typeuser = null)
   {
@@ -46,7 +69,7 @@ class TypeUserController extends Controller
       $em = $this->getDoctrine()->getManager();
       $em->persist($typeuser);
 
-      //Gestion des erreur
+      //Gestion des erreur de Création
 
       try{
         $em->flush();
@@ -63,9 +86,13 @@ class TypeUserController extends Controller
     return $this->render('typeuser/new.html.twig', array('form' => $form->createView(),));
   }
 
-
-  //Edition d'un type utilisateur
-
+  /**
+  * Permet l'édition une entités TypeUser
+  *
+  *  @param $affecte est l'entité a éditer
+  *
+  * @return retourne la vue affichant la page d'édition d'un TypeUser
+  */
 
   public function editAction(Request $request, TypeUser $typeuser)
 
@@ -77,7 +104,7 @@ class TypeUserController extends Controller
     if ($editForm->isSubmitted() && $editForm->isValid()) {
       $em = $this->getDoctrine()->getManager();
 
-        //Gestion des erreur
+        //Gestion des erreur d'édition
 
       try{
         $em->flush();
@@ -98,7 +125,13 @@ class TypeUserController extends Controller
     ));
   }
 
-  //Suppression d'un type
+  /**
+  * Permet la suppression une entités TypeUser
+  *
+  *  @param $affecte est l'entité a supprimer
+  *
+  * @return supprime l'entité et retourne la vue affichant toute les TypeUsers
+  */
 
 
   public function deleteAction(Request $request, TypeUser $typeuser)
@@ -111,7 +144,7 @@ class TypeUserController extends Controller
       $em = $this->getDoctrine()->getManager();
       $em->remove($typeuser);
 
-        //Gestion des erreur
+        //Gestion des erreur de suppression
 
       try{
 

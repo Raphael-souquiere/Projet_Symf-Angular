@@ -1,5 +1,13 @@
 <?php
 
+/**
+* Repository de l'entité site
+*
+* @author Aristide Pichereau & Raphael Souquiere
+* @version 1.0.0
+*
+*/
+
 namespace BackBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
@@ -7,7 +15,10 @@ use Doctrine\ORM\EntityRepository;
 class SiteRepository extends EntityRepository
 {
 
-  //Recupère tous les sites
+  /**
+  *Récupère tous les sites
+  *
+  */
 
   public function findAllOrderedByName()
   {
@@ -18,7 +29,11 @@ class SiteRepository extends EntityRepository
       ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
     }
 
-    //Récupère un site
+    /**
+    *récupère un site
+    *
+    *@param $id id du site
+    */
 
     public function findOne($id)
     {

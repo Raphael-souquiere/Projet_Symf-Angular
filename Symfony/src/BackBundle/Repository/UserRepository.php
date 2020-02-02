@@ -1,5 +1,13 @@
 <?php
 
+/**
+* Repository de l'entité user
+*
+* @author Aristide Pichereau & Raphael Souquiere
+* @version 1.0.0
+*
+*/
+
 namespace BackBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
@@ -21,7 +29,10 @@ class UserRepository extends EntityRepository
       ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
     }
 
-    //Récupère tous les utilisateurs possédant une clé
+    /**
+    *Récupère tous les utilisateurs possédant une clé
+    *
+    */
 
     public function findAllOrderedByNameFront()
     {
@@ -37,7 +48,12 @@ class UserRepository extends EntityRepository
         ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
       }
 
-      //Récupère un utilisateur par son id
+      /**
+      *récupère l'utilisateur d'id
+      *
+      *@param $id id de l'utilisateur
+      *
+      */
 
       public function findOne($id)
       {
@@ -54,7 +70,12 @@ class UserRepository extends EntityRepository
           }
         }
 
-        //Récupère un utilisateur pour le back office
+        /**
+        *Récupère un utilisateur pour le back office
+        *
+        *@param $id id de l'utilisateur
+        *
+        */
 
         public function findOneBack($id)
         {
@@ -72,7 +93,12 @@ class UserRepository extends EntityRepository
             }
           }
 
-          //Récupère les utilisateur associer a une clé
+          /**
+          *Récupère les utilisateur associer a une clé
+          *
+          *@param $id id de la clé
+          *
+          */
 
           public function findUserByCle($id)
           {
@@ -91,7 +117,11 @@ class UserRepository extends EntityRepository
 
             //stat
 
-            //Récupère le nombre d' utilisateurs actif
+            /**
+            *Récupère le nombre d' utilisateurs actif
+            *
+            *
+            */
 
             public function findUserActif()
             {
@@ -101,7 +131,10 @@ class UserRepository extends EntityRepository
                 )->getSingleScalarResult();
               }
 
-              //Récupère le nombre d' utilisateurs inactif
+              /**
+              *Récupère le nombre d' utilisateurs inactif
+              *
+              */
 
               public function findUserInactif()
               {
@@ -111,7 +144,10 @@ class UserRepository extends EntityRepository
                   )->getSingleScalarResult();
                 }
 
-                //Récupère le nombre utilisateurs total
+                /**
+                *Récupère le nombre utilisateurs total
+                *
+                */
 
                 public function findUserTotal()
                 {
@@ -121,7 +157,10 @@ class UserRepository extends EntityRepository
                     )->getSingleScalarResult();
                   }
 
-                  //Récupère le nombre d'utilisateur créer par mois
+                  /**
+                  *Récupère le nombre d'utilisateur créer par mois
+                  *
+                  */
 
                   public function evolutionmensueluser()
                   {
@@ -136,7 +175,11 @@ class UserRepository extends EntityRepository
                       ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
                     }
 
-                    //Recherche un utilisateur grace a son nom , son site et son type
+                    /**
+                    *Recherche un utilisateur grace a son nom , son site et son type
+                    *
+                    *@param $nom le nom de l'utilisateur , $site le site de l'utilisateur , $typeUSer son type
+                    */
 
                     public function findSearchOrderedByName($nom,$site,$typeUser)
                     {

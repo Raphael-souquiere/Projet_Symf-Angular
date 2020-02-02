@@ -1,5 +1,14 @@
 <?php
 
+/**
+* Fichier utiliser pour la gestion CRUD de la table Etat
+*
+*
+* @author Aristide Pichereau & Raphael Souquiere
+* @version 1.0.0
+*
+*/
+
 namespace BackBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -10,7 +19,11 @@ use BackBundle\Entity\Etat;
 class EtatController extends Controller
 {
 
-  //Affichage de tout les etats
+  /**
+  * Affiche la liste des entités Etat
+  *
+  * @return
+  */
 
 
   public function showallAction()
@@ -24,7 +37,13 @@ class EtatController extends Controller
   }
 
 
-  //affichage d'un etat
+  /**
+  * Affiche une entités  Etat
+  *
+  *  @param $id est l'id de l'entité a afficher
+  *
+  * @return retourne la vue affichant le detail d'une Etat
+  */
 
 
   public function showAction($id)
@@ -37,8 +56,12 @@ class EtatController extends Controller
     ));
   }
 
-  //Creation d'un etat
-
+  /**
+  * Créer une entités etat
+  *
+  *
+  * @return retourne la vue affichant le formulaire de création d'une etat
+  */
 
   public function newAction(Request $request, Etat $etat = null)
   {
@@ -72,7 +95,13 @@ class EtatController extends Controller
   }
 
 
-  //Edition d'un Etat
+  /**
+  * Permet l'édition une entités Etat
+  *
+  *  @param $affecte est l'entité a éditer
+  *
+  * @return retourne la vue affichant la page d'édition d'une Etat
+  */
 
 
   public function editAction(Request $request, Etat $etat)
@@ -111,7 +140,13 @@ class EtatController extends Controller
   }
 
 
-  //Suppression d'un etat
+  /**
+  * Permet la suppression une entités Etat
+  *
+  *  @param $affecte est l'entité a supprimer
+  *
+  * @return supprime l'entité et retourne la vue affichant toute les etats
+  */
 
 
   public function deleteAction(Request $request, Etat $etat)

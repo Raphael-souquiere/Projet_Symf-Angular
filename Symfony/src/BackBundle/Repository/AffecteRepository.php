@@ -1,5 +1,13 @@
 <?php
 
+/**
+* Repository de l'entité affecte
+*
+* @author Aristide Pichereau & Raphael Souquiere
+* @version 1.0.0
+*
+*/
+
 namespace BackBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
@@ -7,7 +15,12 @@ use Doctrine\ORM\EntityRepository;
 class AffecteRepository extends EntityRepository
 {
 
-  //recupère les affectations de la clé d'id $id
+  /**
+  *Recupère les affectations affecter a la clé
+  *
+  *@param $id id de la clé
+  *
+  */
 
   public function findAffecteByCle($id)
   {
@@ -19,7 +32,9 @@ class AffecteRepository extends EntityRepository
       ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
     }
 
-    //recupère toute les affectations
+    /**
+    *recupère toute les affectations
+    */
 
     public function findAllOrderedByName()
     {
@@ -32,7 +47,12 @@ class AffecteRepository extends EntityRepository
         ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
       }
 
-      //récupère l'affectation d'id $id
+      /**
+      *récupère l'affectation d'id
+      *
+      *@param $id id de l'affectation
+      *
+      */
 
       public function findOne($id)
       {
@@ -45,8 +65,12 @@ class AffecteRepository extends EntityRepository
           ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
         }
 
-        //récupère l'affectation d'id $id pour le backoffice
-
+        /**
+        *récupère une affectation pour le backoffice
+        *
+        *@param $id id de l'affectation
+        *
+        */
         public function findOneBack($id)
         {
           return $this->getEntityManager()

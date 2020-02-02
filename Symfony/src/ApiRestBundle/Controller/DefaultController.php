@@ -1,5 +1,13 @@
 <?php
 
+/**
+* Controller de l'API
+*
+* @author Aristide Pichereau & Raphael Souquiere
+* @version 1.0.0
+*
+*/
+
 namespace ApiRestBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -19,7 +27,12 @@ class DefaultController extends Controller
     return $this->render('ApiRestBundle:Default:index.html.twig');
   }
 
-  //Envoie au format Json La liste des clés
+  /**
+  *Envoie au format Json La liste des clés
+  *
+  *@return reponse au format JSON
+  */
+
 
   public function listecleAction()
   {
@@ -34,7 +47,13 @@ class DefaultController extends Controller
 
   }
 
-  //Envoie au format Json le detail d'une clé
+  /**
+  *Envoie au format Json le detail d'une clé
+  *
+  *@param $id id de la clé
+  *
+  *@return reponse au format JSON
+  */
 
   public function detailcleAction($id)
   {
@@ -49,7 +68,13 @@ class DefaultController extends Controller
     return $response;
   }
 
-  //Envoie au format Json La liste des utilisateurs associer a une clé
+  /**
+  *Envoie au format Json La liste des utilisateurs associer a une clé
+  *
+  *@param $id id de la clé
+  *
+  *@return reponse au format JSON
+  */
 
   public function detailcleusersAction($id)
   {
@@ -66,8 +91,11 @@ class DefaultController extends Controller
     return $response;
   }
 
-
-  //Envoie au format Json La liste des utilisateurs
+  /**
+  *Envoie au format Json La liste des utilisateurs
+  *
+  *@return reponse au format JSON
+  */
 
   public function listeuserAction()
   {
@@ -81,7 +109,13 @@ class DefaultController extends Controller
     return $response;
   }
 
-    //Envoie au format Json le detail d'un utilisateurs
+  /**
+  *Envoie au format Json le detail d'un utilisateurs
+  *
+  *@param $id id de l' utilisateur
+  *
+  *@return reponse au format JSON
+  */
 
   public function detailuserAction($id)
   {
@@ -97,7 +131,13 @@ class DefaultController extends Controller
     return $response;
   }
 
-  //Envoie au format Json La liste des clés associer a une utilisateurs
+  /**
+  *Envoie au format Json La liste des clés associer a une utilisateurs
+  *
+  *@param $id id de l' utilisateur
+  *
+  *@return reponse au format JSON
+  */
 
   public function detailuserclesAction($id)
   {
@@ -113,7 +153,13 @@ class DefaultController extends Controller
     return $response;
   }
 
-  //Envoie au format Json les resultat du formulaire 
+  /**
+  *Envoie au format Json les resultat du formulaire
+  *
+  *@param $request contient les champ passer dans l'URL
+  *
+  *@return reponse au format JSON
+  */
 
   public function searchuserAction(Request $request)
   {

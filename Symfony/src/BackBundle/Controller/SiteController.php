@@ -1,5 +1,14 @@
 <?php
 
+/**
+* Fichier utiliser pour la gestion CRUD de la table Site
+*
+*
+* @author Aristide Pichereau & Raphael Souquiere
+* @version 1.0.0
+*
+*/
+
 namespace BackBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -10,7 +19,11 @@ use BackBundle\Entity\Site;
 class SiteController extends Controller
 {
 
-  //Affichage de tout les sites
+  /**
+  * Affiche la liste des entités Site
+  *
+  * @return
+  */
 
   public function showallAction()
   {
@@ -22,7 +35,13 @@ class SiteController extends Controller
     ));
   }
 
-  //Affichage d'un site
+  /**
+  * Affiche une entités  Site
+  *
+  *  @param $id est l'id de l'entité a afficher
+  *
+  * @return retourne la vue affichant le detail d'une Site
+  */
 
   public function showAction($id)
   {
@@ -34,7 +53,12 @@ class SiteController extends Controller
     ));
   }
 
-  //Creation d'un site
+  /**
+  * Créer une entités Site
+  *
+  *
+  * @return retourne la vue affichant le formulaire de création d'une Site
+  */
 
 
   public function newAction(Request $request, Site $site = null)
@@ -47,14 +71,14 @@ class SiteController extends Controller
       $em = $this->getDoctrine()->getManager();
       $em->persist($site);
 
-      //Gestion des erreur
+      //Gestion des erreur de création
 
       try{
 
         $em->flush();
       }catch (\Doctrine\DBAL\DBALException $e){
         return $this->render('error.html.twig', [
-          "title" => "Une erreur est survenue lors de la suppression de l'entité",
+          "title" => "Une erreur est survenue lors de la creation de l'entité",
           "message" => $e->getMessage(),
           "errorcode" => $e->getErrorCode()
         ]);
@@ -67,7 +91,13 @@ class SiteController extends Controller
   }
 
 
-  //Edition d'un site
+  /**
+  * Permet l'édition une entités Site
+  *
+  *  @param $affecte est l'entité a éditer
+  *
+  * @return retourne la vue affichant la page d'édition d'une Site
+  */
 
 
   public function editAction(Request $request, Site $site)
@@ -79,7 +109,7 @@ class SiteController extends Controller
 
     if ($editForm->isSubmitted() && $editForm->isValid()) {
 
-      //Gestion des erreur
+      //Gestion des erreur d'édition
 
       try{
 
@@ -87,7 +117,7 @@ class SiteController extends Controller
 
       }catch (\Doctrine\DBAL\DBALException $e){
         return $this->render('error.html.twig', [
-          "title" => "Une erreur est survenue lors de la suppression de l'entité",
+          "title" => "Une erreur est survenue lors de l'edition de l'entité",
           "message" => $e->getMessage(),
           "errorcode" => $e->getErrorCode()
         ]);
@@ -104,9 +134,13 @@ class SiteController extends Controller
     ));
   }
 
-
-  //Suppression d'un site
-
+  /**
+  * Permet la suppression une entités Site
+  *
+  *  @param $affecte est l'entité a supprimer
+  *
+  * @return supprime l'entité et retourne la vue affichant toute les Sites
+  */
 
   public function deleteAction(Request $request, Site $site)
   {
@@ -118,7 +152,7 @@ class SiteController extends Controller
       $em = $this->getDoctrine()->getManager();
       $em->remove($site);
 
-      //Gestion des erreur
+      //Gestion des erreur de suppression
 
       try{
 
